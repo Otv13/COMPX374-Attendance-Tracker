@@ -1,0 +1,13 @@
+# Maven build
+target/
+*.log
+
+# IDE files
+.idea/
+.vscode/
+*.iml
+
+# Docker volumes
+dbdata/
+
+

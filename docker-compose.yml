@@ -1,0 +1,30 @@
+services:
+  db:
+    image: mariadb:10.6
+    container_name: attendance-db
+    restart: always
+    environment:
+      MARIADB_DATABASE: attend
+      MARIADB_USER: attend
+      MARIADB_PASSWORD: attendpw
+      MARIADB_ROOT_PASSWORD: rootpw
+    ports:
+      - "3307:3306"   # host:container (use 3307 on host to avoid conflict)
+    volumes:
+      - dbdata:/var/lib/mysql
+
+  api:
+    build: ./backend   # ✅ looks inside backend folder for Dockerfile
+    container_name: attendance-app
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mariadb://db:3306/attend
+      SPRING_DATASOURCE_USERNAME: attend
+      SPRING_DATASOURCE_PASSWORD: attendpw
+      APP_BASE_URL: http://localhost:8080
+    ports:
+      - "8080:8080"   # ✅ API runs on 8080
+
+volumes:
+  dbdata:

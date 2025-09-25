@@ -17,7 +17,7 @@ import java.util.*;
 
 @RestController
 @RequestMapping("/api/staff")
-@RequiredArgsConstructor   // ✅ re-enable so repos get injected
+@RequiredArgsConstructor   // ✅ ensures repos get injected
 public class StaffController {
 
     private final SessionRepository sessionRepo;
@@ -27,7 +27,7 @@ public class StaffController {
     @Value("${APP_BASE_URL:http://localhost:8080}")
     private String baseUrl;
 
-    // FR1, FR3, FR4, FR5
+    // FR1, FR3, FR4, FR5 – Create session
     @PostMapping("/sessions")
     public Map<String, Object> createSession(@RequestBody Map<String, Object> body) {
         Session s = new Session();
@@ -53,31 +53,42 @@ public class StaffController {
         return Map.of("sessionId", s.getId(), "token", s.getToken(), "link", link);
     }
 
-    // FR2 – roster import
-    @PostMapping("/sessions/{id}/roster")
-    public ResponseEntity<?> importRoster(@PathVariable Long id, @RequestBody List<Map<String, String>> rows) {
-        Session s = sessionRepo.findById(id).orElseThrow();
-        for (Map<String, String> r : rows) {
-            Student st = new Student();
-            st.setSession(s);
-            st.setUsername(r.get("username"));
-            st.setStudentId(r.get("studentId"));
-            st.setName(r.getOrDefault("name", ""));
-            studentRepo.save(st);
-        }
-        return ResponseEntity.ok(Map.of("count", rows.size()));
+ // FR2 – Roster import
+@PostMapping("/sessions/{id}/roster")
+public ResponseEntity<?> importRoster(@PathVariable("id") Long id,
+                                      @RequestBody List<Map<String, String>> rows) {
+    System.out.println("📥 Import roster called for sessionId=" + id);
+    System.out.println("📦 Incoming rows: " + rows);
+
+    Session s = sessionRepo.findById(id).orElseThrow();
+
+    int savedCount = 0;
+    for (Map<String, String> r : rows) {
+        System.out.println("➡️ Processing row: " + r);
+        Student st = new Student();
+        st.setSession(s);
+        st.setUsername(r.get("username"));
+        st.setStudentId(r.get("studentId"));
+        st.setName(r.getOrDefault("name", ""));
+        studentRepo.save(st);
+        savedCount++;
     }
 
-    // FR13 – list report
+    System.out.println("✅ Successfully saved " + savedCount + " students");
+    return ResponseEntity.ok(Map.of("count", savedCount));
+}
+
+
+    // FR13 – List report
     @GetMapping("/sessions/{id}/report")
-    public List<Attendance> report(@PathVariable Long id) {
+    public List<Attendance> report(@PathVariable("id") Long id) {
         Session s = sessionRepo.findById(id).orElseThrow();
         return attendanceRepo.findBySession(s);
     }
 
-    // FR14 – CSV export with truncation/precision
+    // FR14 – CSV export
     @GetMapping(value = "/sessions/{id}/export.csv", produces = "text/csv")
-    public ResponseEntity<byte[]> exportCsv(@PathVariable Long id) {
+    public ResponseEntity<byte[]> exportCsv(@PathVariable("id") Long id) {
         Session s = sessionRepo.findById(id).orElseThrow();
         List<Attendance> rows = attendanceRepo.findBySession(s);
 

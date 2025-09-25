@@ -26,7 +26,14 @@ $('#create').onclick = async () => {
     sessionId = res.sessionId;
     token = res.token;
 
-    $('#link').innerHTML = `Student link: <a href="${res.link}" target="_blank">${res.link}</a>`;
+    // ✅ Fix: point to student.html with token, not the raw API
+   // const studentUrl = `/student.html?token=${token}`;
+   // $('#link').innerHTML = `Student link: <a href="${studentUrl}" target="_blank">${studentUrl}</a>`;
+    
+    // NEW (points to student.html with token)
+    const studentUrl = `/student.html?token=${token}`;
+    $('#link').innerHTML = `Student link: <a href="${studentUrl}" target="_blank">${studentUrl}</a>`;
+
     $('#upload').disabled = false;
     $('#refresh').disabled = false;
     $('#export').href = `/api/staff/sessions/${sessionId}/export.csv?privacy=true`;
@@ -37,22 +44,46 @@ $('#create').onclick = async () => {
   }
 };
 
+
 // Upload roster
 $('#upload').onclick = async () => {
   try {
-    const rows = JSON.parse($('#roster').value);
+    const raw = $('#roster').value;
+    console.log("📥 Raw roster input:", raw);
+
+    let rows;
+    try {
+      rows = JSON.parse(raw);
+    } catch (e) {
+      console.error("❌ Failed to parse roster JSON:", e);
+      alert("Invalid JSON in roster textarea");
+      return;
+    }
+
+    console.log("📦 Parsed roster object:", rows);
+
     const res = await fetch(`/api/staff/sessions/${sessionId}/roster`, {
       method: 'POST',
       headers,
       body: JSON.stringify(rows),
-    }).then(r => r.json());
+    });
 
-    $('#rosterResult').textContent = `Imported ${res.count} students.`;
+    console.log("📡 Response status:", res.status);
+
+    const data = await res.json().catch(err => {
+      console.error("❌ Failed to parse response as JSON:", err);
+      return { error: "Invalid JSON response" };
+    });
+
+    console.log("📨 Response data:", data);
+
+    $('#rosterResult').textContent = `Imported ${data.count} students.`;
   } catch (err) {
-    console.error(err);
+    console.error("🔥 Upload roster failed:", err);
     alert('Failed to upload roster');
   }
 };
+
 
 // Refresh report
 $('#refresh').onclick = async () => {

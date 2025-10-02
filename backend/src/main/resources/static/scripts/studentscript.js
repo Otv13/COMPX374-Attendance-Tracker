@@ -1,4 +1,4 @@
-// ✅ Fix: should be URLSearchParams (plural)
+// Fix: should be URLSearchParams (plural)
 const params = new URLSearchParams(location.search);
 const token = params.get('token');
 
@@ -41,7 +41,7 @@ $('#btn').onclick = () => {
         : 'ok';
 
   }, async err => {
-    // ❌ No location: still submit with nulls to record denied (FR12)
+    //  No location: still submit with nulls to record denied (FR12)
     const body = {
       token,
       username: $('#u').value,

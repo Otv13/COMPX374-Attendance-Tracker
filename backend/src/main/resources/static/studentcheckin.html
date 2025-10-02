@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Student Check-in</title>
+  <link rel="stylesheet" href="studentcheckin.css" />
+</head>
+<body>
+  <header>
+    <h1>Student Check-in</h1>
+    <p id="status">Share your location when prompted.</p>
+  </header>
+
+  <div class="container">
+    <form>
+      <label for="u">Username</label>
+      <input id="u" type="text" placeholder="Enter your name" required />
+
+      <label for="sid">Student ID</label>
+      <input id="sid" type="text" placeholder="Enter your student ID" required />
+
+      <button id="btn" type="button">Check In</button>
+    </form>
+
+    <pre id="out"></pre>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Attendance Tracker - Group N</p>
+  </footer>
+
+  <script src="scripts/studentscript.js"></script>
+</body>
+</html>

@@ -1,107 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Attendance Tracker</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attendance Tracker - Home</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f2f5;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    header {
+      background: #2c3e50;
+      color: white;
+      padding: 20px;
+    }
+    h1 {
+      margin: 0;
+    }
+    .container {
+      margin-top: 50px;
+    }
+    .card {
+      display: inline-block;
+      background: white;
+      border-radius: 10px;
+      padding: 30px;
+      margin: 20px;
+      width: 250px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    a {
+      text-decoration: none;
+      color: #3498db;
+      font-weight: bold;
+      display: block;
+      margin-top: 10px;
+    }
+    footer {
+      margin-top: 50px;
+      padding: 10px;
+      background: #2c3e50;
+      color: white;
+    }
+  </style>
 </head>
 <body>
   <header>
-    <h1>Attendance Tracker – Staff Dashboard</h1>
+    <h1>Attendance Tracker</h1>
+    <p>Select a portal to continue</p>
   </header>
 
-  <!-- Session Creation -->
-  <section>
-    <h2>Create Session</h2>
-    <form id="sessionForm">
-      <label>
-        Course Code:
-        <input id="course" type="text" placeholder="COMPX374" />
-      </label>
-      <label>
-        Owner Email:
-        <input id="owner" type="email" placeholder="staff@waikato.ac.nz" />
-      </label>
-      <label>
-        Start (UTC ISO):
-        <input id="start" type="text" placeholder="2025-09-25T08:00:00Z" />
-      </label>
-      <label>
-        End (UTC ISO):
-        <input id="end" type="text" placeholder="2025-09-25T10:00:00Z" />
-      </label>
-
-      <details>
-        <summary>Geofence (optional)</summary>
-        <label>
-          Latitude:
-          <input id="lat" type="number" step="0.000001" placeholder="-37.789000" />
-        </label>
-        <label>
-          Longitude:
-          <input id="lng" type="number" step="0.000001" placeholder="175.279000" />
-        </label>
-        <label>
-          Radius (m):
-          <input id="rad" type="number" value="150" />
-        </label>
-      </details>
-
-      <button type="button" id="create">Create Session</button>
-    </form>
-
-    <div id="link" class="output"></div>
-  </section>
-
-  <!-- Roster Import -->
-  <section>
-    <h2>Import Roster</h2>
-    <p>
-      Paste JSON array of
-      <code>{username, studentId, name}</code> rows (simple stand-in for CSV):
-    </p>
-    <textarea id="roster" rows="6" style="width:100%">
-[
-  {"username":"sally","studentId":"1001","name":"Sally Student"},
-  {"username":"tom","studentId":"1002","name":"Tom Learner"}
-]
-    </textarea>
-    <br />
-    <button id="upload" disabled>Upload to Session</button>
-    <div id="rosterResult" class="output"></div>
-  </section>
-
-  <!-- Attendance Report -->
-  <section>
-    <h2>Attendance Report</h2>
-    <div class="report-controls">
-      <button id="refresh" disabled>Refresh Report</button>
-      <a id="export" href="#" download>Download CSV</a>
+  <div class="container">
+    <div class="card">
+      <h2>📋 Staff Dashboard</h2>
+      <p>Create sessions, upload rosters, and manage attendance.</p>
+      <a href="staffdashboard.html">Go to Staff Dashboard →</a>
     </div>
 
-    <table id="tbl">
-      <thead>
-        <tr>
-          <th>User</th>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Time</th>
-          <th>Lat</th>
-          <th>Lng</th>
-          <th>Acc (m)</th>
-          <th>IP (/24 or /64)</th>
-          <th>Device Hash</th>
-          <th>Late</th>
-          <th>Geo</th>
-          <th>LowAcc</th>
-          <th>Note</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-  </section>
+    <div class="card">
+      <h2>🧑‍🎓 Student Check-in</h2>
+      <p>Students can check into their class sessions securely.</p>
+      <a href="studentcheckin.html">Go to Student Check-in →</a>
+    </div>
 
-  <script src="scripts/indexscript.js"></script>
+    <div class="card">
+      <h2>📊 Staff Reports</h2>
+      <p>View attendance reports and download CSV files.</p>
+      <a href="staffportal.html">Go to Reports →</a>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Attendance Tracker - Group N</p>
+  </footer>
 </body>
 </html>

@@ -17,7 +17,7 @@ import java.util.*;
 
 @RestController
 @RequestMapping("/api/staff")
-@RequiredArgsConstructor   // ✅ ensures repos get injected
+@RequiredArgsConstructor   //  ensures repos get injected
 public class StaffController {
 
     private final SessionRepository sessionRepo;
@@ -74,7 +74,7 @@ public ResponseEntity<?> importRoster(@PathVariable("id") Long id,
         savedCount++;
     }
 
-    System.out.println("✅ Successfully saved " + savedCount + " students");
+    System.out.println(" Successfully saved " + savedCount + " students");
     return ResponseEntity.ok(Map.of("count", savedCount));
 }
 

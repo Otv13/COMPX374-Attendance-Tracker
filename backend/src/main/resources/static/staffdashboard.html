@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Staff – Session Management</title>
+  <link rel="stylesheet" href="staffdashboard.css" />
+
+</head>
+<body>
+  <header>
+    <h1>Staff – Session Management</h1>
+    <p>Create sessions, import rosters, and manage classes</p>
+  </header>
+
+  <!-- Session Creation -->
+  <section>
+    <h2>Create Session</h2>
+    <form id="sessionForm">
+      <label>Course Code:
+        <input id="course" type="text" placeholder="COMPX374" />
+      </label>
+      <label>Owner Email:
+        <input id="owner" type="email" placeholder="staff@waikato.ac.nz" />
+      </label>
+      <label>Start (UTC ISO):
+        <input id="start" type="text" placeholder="2025-09-25T08:00:00Z" />
+      </label>
+      <label>End (UTC ISO):
+        <input id="end" type="text" placeholder="2025-09-25T10:00:00Z" />
+      </label>
+
+      <details>
+        <summary>Geofence (optional)</summary>
+        <label>Latitude:
+          <input id="lat" type="number" step="0.000001" placeholder="-37.789000" />
+        </label>
+        <label>Longitude:
+          <input id="lng" type="number" step="0.000001" placeholder="175.279000" />
+        </label>
+        <label>Radius (m):
+          <input id="rad" type="number" value="150" />
+        </label>
+      </details>
+
+      <button type="button" id="create">Create Session</button>
+    </form>
+    <div id="link" class="output"></div>
+  </section>
+
+  <!-- Roster Import -->
+  <section>
+    <h2>Import Roster</h2>
+    <p>Paste JSON array of <code>{username, studentId, name}</code> rows:</p>
+    <textarea id="roster" rows="6">[
+  {"username":"sally","studentId":"1001","name":"Sally Student"},
+  {"username":"tom","studentId":"1002","name":"Tom Learner"}
+]</textarea>
+    <button id="upload" disabled>Upload to Session</button>
+    <div id="rosterResult" class="output"></div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Attendance Tracker - Group N</p>
+    <p><a href="staffportal.html">Go to Staff Summary View</a></p>
+  </footer>
+
+  <script src="scripts/indexscript.js"></script>
+</body>
+</html>

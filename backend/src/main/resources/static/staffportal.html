@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Staff Summary – Attendance Report</title>
+  <link rel="stylesheet" href="staffportal.css" />
+</head>
+<body>
+  <header>
+    <h1>Attendance Report</h1>
+    <p>Review attendance, check location flags, and export records</p>
+  </header>
+
+  <section>
+    <div class="report-controls">
+      <button id="refresh" disabled>Refresh Report</button>
+      <a id="export" href="#" download>Download CSV</a>
+    </div>
+
+    <table id="tbl">
+      <thead>
+        <tr>
+          <th>User</th>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Time</th>
+          <th>Lat</th>
+          <th>Lng</th>
+          <th>Acc (m)</th>
+          <th>IP (/24 or /64)</th>
+          <th>Device Hash</th>
+          <th>Late</th>
+          <th>Geo</th>
+          <th>LowAcc</th>
+          <th>Note</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Attendance Tracker - Group N</p>
+  </footer>
+
+  <script src="scripts/indexscript.js"></script>
+</body>
+</html>

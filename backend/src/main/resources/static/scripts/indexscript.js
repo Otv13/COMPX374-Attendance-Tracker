@@ -26,7 +26,7 @@ $('#create').onclick = async () => {
     sessionId = res.sessionId;
     token = res.token;
 
-    // ✅ Fix: point to student.html with token, not the raw API
+    //  Fix: point to student.html with token, not the raw API
    // const studentUrl = `/student.html?token=${token}`;
    // $('#link').innerHTML = `Student link: <a href="${studentUrl}" target="_blank">${studentUrl}</a>`;
     
@@ -71,7 +71,7 @@ $('#upload').onclick = async () => {
     console.log("📡 Response status:", res.status);
 
     const data = await res.json().catch(err => {
-      console.error("❌ Failed to parse response as JSON:", err);
+      console.error(" Failed to parse response as JSON:", err);
       return { error: "Invalid JSON response" };
     });
 

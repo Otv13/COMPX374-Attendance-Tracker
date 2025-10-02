@@ -49,7 +49,7 @@ public class StaffController {
 
         sessionRepo.save(s);
 
-        String link = baseUrl + "/student.html?token=" + s.getToken();
+        String link = baseUrl + "/studentcheckin.html?token=" + s.getToken();
         return Map.of("sessionId", s.getId(), "token", s.getToken(), "link", link);
     }
 

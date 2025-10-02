@@ -1,9 +1,10 @@
+// indexscript.js – Staff Dashboard
 let sessionId = null, token = null;
 const $ = sel => document.querySelector(sel);
 
 const headers = { 'Content-Type': 'application/json' };
 
-// Create Session
+// ----------------- Create Session -----------------
 $('#create').onclick = async () => {
   try {
     const body = {
@@ -26,17 +27,29 @@ $('#create').onclick = async () => {
     sessionId = res.sessionId;
     token = res.token;
 
-    //  Fix: point to student.html with token, not the raw API
-   // const studentUrl = `/student.html?token=${token}`;
-   // $('#link').innerHTML = `Student link: <a href="${studentUrl}" target="_blank">${studentUrl}</a>`;
-    
-    // NEW (points to student.html with token)
-    const studentUrl = `/student.html?token=${token}`;
+    // Student link
+    const studentUrl = `/studentcheckin.html?token=${token}`;
     $('#link').innerHTML = `Student link: <a href="${studentUrl}" target="_blank">${studentUrl}</a>`;
 
-    $('#upload').disabled = false;
-    $('#refresh').disabled = false;
-    $('#export').href = `/api/staff/sessions/${sessionId}/export.csv?privacy=true`;
+    // Enable buttons
+    if ($('#upload')) $('#upload').disabled = false;
+    if ($('#refresh')) $('#refresh').disabled = false;
+    if ($('#export')) $('#export').href = `/api/staff/sessions/${sessionId}/export.csv?privacy=true`;
+
+    // ----------------- Update Manage Classes -----------------
+    const sessionList = $('#sessionList');
+    if (sessionList) {
+      const sessionDiv = document.createElement('div');
+      sessionDiv.innerHTML = `
+        <p>
+          <strong>Course:</strong> ${body.courseCode}<br>
+          <strong>Owner:</strong> ${body.ownerEmail}<br>
+          <a href="${studentUrl}" target="_blank">Student Check-in Link</a>
+        </p>
+        <hr>
+      `;
+      sessionList.prepend(sessionDiv);
+    }
 
   } catch (err) {
     console.error(err);
@@ -44,8 +57,7 @@ $('#create').onclick = async () => {
   }
 };
 
-
-// Upload roster
+// ----------------- Upload Roster -----------------
 $('#upload').onclick = async () => {
   try {
     const raw = $('#roster').value;
@@ -84,14 +96,17 @@ $('#upload').onclick = async () => {
   }
 };
 
-
-// Refresh report
+// ----------------- Refresh Report -----------------
 $('#refresh').onclick = async () => {
   try {
     const list = await fetch(`/api/staff/sessions/${sessionId}/report`)
       .then(r => r.json());
 
     const tbody = $('#tbl tbody');
+    if (!tbody) {
+      console.warn("⚠️ No table found for report refresh");
+      return;
+    }
     tbody.innerHTML = '';
 
     for (const a of list) {

@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Staff – Session Management</title>
   <link rel="stylesheet" href="staffdashboard.css" />
-
 </head>
 <body>
   <header>
@@ -58,6 +57,45 @@
 ]</textarea>
     <button id="upload" disabled>Upload to Session</button>
     <div id="rosterResult" class="output"></div>
+  </section>
+
+  <!-- Manage Classes -->
+  <section>
+    <h2>Manage Classes</h2>
+    <p>View and manage your created sessions below:</p>
+    <div id="sessionList" class="output">
+      <p>No sessions yet. Create one above to get started.</p>
+    </div>
+  </section>
+
+  <!-- Attendance Report -->
+  <section>
+    <h2>Attendance Report</h2>
+    <div class="report-controls">
+      <button id="refresh" disabled>Refresh Report</button>
+      <a id="export" href="#" download>Download CSV</a>
+    </div>
+
+    <table id="tbl">
+      <thead>
+        <tr>
+          <th>User</th>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Time</th>
+          <th>Lat</th>
+          <th>Lng</th>
+          <th>Acc (m)</th>
+          <th>IP (/24 or /64)</th>
+          <th>Device Hash</th>
+          <th>Late</th>
+          <th>Geo</th>
+          <th>LowAcc</th>
+          <th>Note</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
   </section>
 
   <footer>

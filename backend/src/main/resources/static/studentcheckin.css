@@ -1,87 +1,97 @@
 /* ===== Global Styles ===== */
 body {
-    font-family: Arial, sans-serif;
-    background: #f0f2f5;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-  }
-  
-  label {
-    display: block;
-    margin: 10px 0 5px;
-    font-weight: bold;
-  }
-  
-  .ok { color: #085; }
-  .err { color: #a00; }
-  
-  /* ===== Layout ===== */
-  header {
-    background: #2c3e50;
-    color: white;
-    padding: 20px;
-  }
-  
-  .container {
-    margin: 30px auto;
-    width: 90%;
-    max-width: 500px;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    text-align: left;
-  }
-  
-  footer {
-    margin-top: 40px;
-    padding: 10px;
-    background: #2c3e50;
-    color: white;
-    text-align: center;
-  }
-  
-  /* ===== Forms ===== */
-  input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  /* ===== Buttons ===== */
-  button {
-    display: block;
-    width: 100%;
-    padding: 12px;
-    background: #3498db;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background: #2980b9;
-  }
-  
-  /* ===== Status & Output ===== */
-  #status {
-    text-align: center;
-    margin-bottom: 15px;
-    font-style: italic;
-    color: #555;
-  }
-  
-  pre {
-    background: #f4f4f4;
-    padding: 10px;
-    border-radius: 5px;
-    margin-top: 20px;
-    max-height: 200px;
-    overflow-y: auto;
-  }
-  
+  font-family: Arial, sans-serif;
+  background: #f0f2f5;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: bold;
+  color: #000000; /* Black for readability */
+}
+
+.ok { 
+  color: #27ae60; /* Success green kept for clarity */
+}
+
+.err { 
+  color: #DA291C; /* Brand Red for errors */
+}
+
+/* ===== Layout ===== */
+header {
+  background: #DA291C; /* Brand Red */
+  color: #FFFFFF;
+  padding: 20px;
+}
+
+.container {
+  margin: 30px auto;
+  width: 90%;
+  max-width: 500px;
+  background: #FFFFFF;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  text-align: left;
+}
+
+footer {
+  margin-top: 40px;
+  padding: 10px;
+  background: #DA291C; /* Brand Red */
+  color: #FFFFFF;
+  text-align: center;
+}
+
+/* ===== Forms ===== */
+input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+/* ===== Buttons ===== */
+button {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background: #FFA300; /* Brand Yellow */
+  color: #000000; /* Black text for contrast */
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #DA291C; /* Brand Red hover */
+  color: #FFFFFF;
+}
+
+/* ===== Status & Output ===== */
+#status {
+  text-align: center;
+  margin-bottom: 15px;
+  font-style: italic;
+  color: #555;
+}
+
+pre {
+  background: #f9f9f9;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 20px;
+  max-height: 200px;
+  overflow-y: auto;
+  border-left: 5px solid #FFA300; /* Yellow accent */
+}

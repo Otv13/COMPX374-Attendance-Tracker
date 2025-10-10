@@ -1,58 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Attendance Tracker - Home</title>
   <style>
+    /* ===== Global ===== */
     body {
       font-family: Arial, sans-serif;
       background: #f0f2f5;
       margin: 0;
       padding: 0;
       text-align: center;
+      color: #000000; /* Brand black */
     }
+
     header {
-      background: #2c3e50;
-      color: white;
-      padding: 20px;
-    }
+  background: #DA291C; /* Brand Red */
+  color: #FFFFFF;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+}
+
+header img { /* waikato uni logo */
+  position: absolute;
+  left: 20px;   /* Distance from left edge */
+  top: 15px;    /* Distance from top */
+  height: 100px; /* Increased from 60px */
+  width: auto;  /* Keeps proper proportions */
+}
+
+
     h1 {
       margin: 0;
     }
+
+    header p {
+      margin-top: 5px;
+      color: #FFF6E0; /* Soft light-yellow accent */
+    }
+
+    /* ===== Layout ===== */
     .container {
       margin-top: 50px;
     }
+
     .card {
       display: inline-block;
-      background: white;
+      background: #FFFFFF;
       border-radius: 10px;
       padding: 30px;
       margin: 20px;
       width: 250px;
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      transition: transform 0.2s ease;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      border-top: 5px solid #FFA300; /* Yellow accent */
     }
+
     .card:hover {
       transform: translateY(-5px);
+      box-shadow: 0 6px 10px rgba(0,0,0,0.15);
     }
+
+    .card h2 {
+      color: #DA291C; /* Brand Red titles */
+    }
+
+    .card p {
+      color: #333;
+    }
+
+    /* ===== Links ===== */
     a {
       text-decoration: none;
-      color: #3498db;
+      color: #FFA300; /* Brand Yellow link */
       font-weight: bold;
       display: block;
       margin-top: 10px;
+      transition: color 0.3s ease;
     }
+
+    a:hover {
+      color: #DA291C; /* Brand Red on hover */
+    }
+
+    /* ===== Footer ===== */
     footer {
       margin-top: 50px;
       padding: 10px;
-      background: #2c3e50;
-      color: white;
+      background: #DA291C; /* Brand Red */
+      color: #FFFFFF;
     }
   </style>
 </head>
 <body>
   <header>
+    <!-- 🏫 University of Waikato Logo -->
+    <img src="uni-waikato-red-logo.jpg" alt="University of Waikato Logo" />
+
     <h1>Attendance Tracker</h1>
     <p>Select a portal to continue</p>
   </header>

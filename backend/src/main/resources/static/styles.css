@@ -9,7 +9,7 @@
 body {
   font-family: system-ui, Arial, sans-serif;
   background: #f9fafb;
-  color: #333;
+  color: #000000; /* Brand black */
   line-height: 1.6;
   padding: 1.5rem;
 }
@@ -21,12 +21,12 @@ header {
 }
 header h1 {
   font-size: 1.8rem;
-  color: #2c3e50;
+  color: #DA291C; /* Brand Red */
 }
 
 /* ===== Sections ===== */
 section {
-  background: #fff;
+  background: #FFFFFF; /* Brand white */
   padding: 1.2rem;
   margin-bottom: 1.5rem;
   border-radius: 8px;
@@ -35,7 +35,10 @@ section {
 section h2 {
   margin-bottom: 0.8rem;
   font-size: 1.3rem;
-  color: #2c3e50;
+  color: #DA291C; /* Brand Red for subheadings */
+  border-bottom: 3px solid #FFA300; /* Brand Yellow accent */
+  display: inline-block;
+  padding-bottom: 3px;
 }
 
 /* ===== Forms ===== */
@@ -46,6 +49,7 @@ form, label {
 label {
   font-weight: 500;
   margin-top: 0.4rem;
+  color: #000000;
 }
 input, textarea {
   width: 100%;
@@ -65,20 +69,23 @@ button, a[download] {
   margin-top: 0.6rem;
   padding: 0.5rem 1rem;
   border: none;
-  background: #007bff;
-  color: #fff;
+  background: #FFA300; /* Brand Yellow */
+  color: #000000; /* Black for contrast */
   border-radius: 4px;
   cursor: pointer;
   text-decoration: none;
   font-size: 0.95rem;
+  font-weight: bold;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 button:disabled {
-  background: #aaa;
+  background: #ccc;
   cursor: not-allowed;
 }
 button:hover:not(:disabled),
 a[download]:hover {
-  background: #0056b3;
+  background: #DA291C; /* Brand Red on hover */
+  color: #FFFFFF; /* White text for contrast */
 }
 
 /* ===== Output / Results ===== */
@@ -96,8 +103,8 @@ table {
   font-size: 0.9rem;
 }
 thead {
-  background: #007bff;
-  color: #fff;
+  background: #DA291C; /* Brand Red header */
+  color: #FFFFFF;
 }
 th, td {
   padding: 0.5rem;
@@ -105,5 +112,5 @@ th, td {
   text-align: center;
 }
 tbody tr:nth-child(even) {
-  background: #f2f2f2;
+  background: #FFF6E0; /* Light tint of brand yellow for zebra rows */
 }

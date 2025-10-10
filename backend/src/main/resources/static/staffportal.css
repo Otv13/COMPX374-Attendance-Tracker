@@ -1,86 +1,90 @@
 /* ===== Global Styles ===== */
 body {
-    font-family: Arial, sans-serif;
-    background: #f0f2f5;
-    margin: 0;
-    padding: 0;
-  }
-  
-  h1, h2 {
-    color: #2c3e50;
-  }
-  
-  /* ===== Layout ===== */
-  header {
-    background: #2c3e50;
-    color: white;
-    padding: 20px;
-    text-align: center;
-  }
-  
-  section {
-    margin: 30px auto;
-    width: 95%;
-    max-width: 1100px;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  }
-  
-  footer {
-    margin-top: 40px;
-    padding: 10px;
-    background: #2c3e50;
-    color: white;
-    text-align: center;
-  }
-  
-  /* ===== Tables ===== */
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 15px;
-  }
-  
-  th, td {
-    padding: 8px;
-    border: 1px solid #ddd;
-    text-align: center;
-  }
-  
-  th {
-    background: #34495e;
-    color: white;
-  }
-  
-  /* ===== Buttons & Links ===== */
-  button,
-  a#export {
-    padding: 8px 12px;
-    border: none;
-    border-radius: 5px;
-    font-size: 14px;
-    cursor: pointer;
-    margin-right: 10px;
-  }
-  
-  button {
-    background: #3498db;
-    color: white;
-  }
-  
-  button:hover {
-    background: #2980b9;
-  }
-  
-  a#export {
-    background: #27ae60;
-    color: white;
-    text-decoration: none;
-  }
-  
-  a#export:hover {
-    background: #1e8449;
-  }
-  
+  font-family: Arial, sans-serif;
+  background: #f0f2f5;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2 {
+  color: #000000; /* Black headings */
+}
+
+/* ===== Layout ===== */
+header {
+  background: #DA291C; /* Brand Red */
+  color: #FFFFFF;
+  padding: 20px;
+  text-align: center;
+}
+
+section {
+  margin: 30px auto;
+  width: 95%;
+  max-width: 1100px;
+  background: #FFFFFF;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+footer {
+  margin-top: 40px;
+  padding: 10px;
+  background: #DA291C; /* Brand Red */
+  color: #FFFFFF;
+  text-align: center;
+}
+
+/* ===== Tables ===== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+th, td {
+  padding: 8px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+th {
+  background: #FFA300; /* Brand Yellow */
+  color: #000000; /* Black for readability */
+}
+
+/* ===== Buttons & Links ===== */
+button,
+a#export {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+/* Primary Button */
+button {
+  background: #FFA300; /* Brand Yellow */
+  color: #000000;
+}
+
+button:hover {
+  background: #DA291C; /* Brand Red on hover */
+  color: #FFFFFF;
+}
+
+/* Export Button */
+a#export {
+  background: #DA291C; /* Brand Red */
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+a#export:hover {
+  background: #FFA300; /* Brand Yellow on hover */
+  color: #000000;
+}

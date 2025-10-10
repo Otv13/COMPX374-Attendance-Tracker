@@ -1,81 +1,87 @@
 /* ===== Global Styles ===== */
 body {
-    font-family: Arial, sans-serif;
-    background: #f0f2f5;
-    margin: 0;
-    padding: 0;
-  }
-  
-  h1, h2 {
-    color: #2c3e50;
-  }
-  
-  /* ===== Layout ===== */
-  header {
-    background: #2c3e50;
-    color: white;
-    padding: 20px;
-    text-align: center;
-  }
-  
-  section {
-    margin: 30px auto;
-    width: 90%;
-    max-width: 800px;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  }
-  
-  footer {
-    margin-top: 40px;
-    padding: 10px;
-    background: #2c3e50;
-    color: white;
-    text-align: center;
-  }
-  
-  /* ===== Forms ===== */
-  label {
-    display: block;
-    margin: 10px 0 5px;
-    font-weight: bold;
-  }
-  
-  input, textarea, button {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-  }
-  
-  /* ===== Buttons ===== */
-  button {
-    background: #3498db;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 15px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background: #2980b9;
-  }
-  
-  /* ===== Utilities ===== */
-  .output {
-    background: #f9f9f9;
-    padding: 10px;
-    border-radius: 5px;
-    font-family: monospace;
-  }
-  
-  a {
-    color: #3498db;
-    text-decoration: none;
-  }
-  
+  font-family: Arial, sans-serif;
+  background: #f0f2f5;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2 {
+  color: #000000; /* Black for headings */
+}
+
+/* ===== Layout ===== */
+header {
+  background: #DA291C; /* Pantone 485 Red */
+  color: #FFFFFF;
+  padding: 20px;
+  text-align: center;
+}
+
+section {
+  margin: 30px auto;
+  width: 90%;
+  max-width: 800px;
+  background: #FFFFFF;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+footer {
+  margin-top: 40px;
+  padding: 10px;
+  background: #DA291C; /* Brand Red */
+  color: #FFFFFF;
+  text-align: center;
+}
+
+/* ===== Forms ===== */
+label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: bold;
+  color: #000000;
+}
+
+input, textarea, button {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+/* ===== Buttons ===== */
+button {
+  background: #FFA300; /* Pantone 137 Yellow */
+  color: #000000; /* Black text for contrast */
+  border: none;
+  border-radius: 5px;
+  font-size: 15px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  background: #DA291C; /* Brand Red on hover */
+  color: #FFFFFF;
+}
+
+/* ===== Utilities ===== */
+.output {
+  background: #f9f9f9;
+  padding: 10px;
+  border-radius: 5px;
+  font-family: monospace;
+}
+
+a {
+  color: #DA291C; /* Brand Red for links */
+  text-decoration: none;
+}
+
+a:hover {
+  color: #FFA300; /* Brand Yellow on hover */
+}

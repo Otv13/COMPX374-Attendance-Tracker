@@ -11,20 +11,20 @@ label {
   display: block;
   margin: 10px 0 5px;
   font-weight: bold;
-  color: #000000; /* Black for readability */
+  color: #000000; 
 }
 
 .ok { 
-  color: #27ae60; /* Success green kept for clarity */
+  color: #27ae60;
 }
 
 .err { 
-  color: #DA291C; /* Brand Red for errors */
+  color: #DA291C; 
 }
 
 /* ===== Layout ===== */
 header {
-  background: #DA291C; /* Brand Red */
+  background: #DA291C; 
   color: #FFFFFF;
   padding: 20px;
 }
@@ -43,7 +43,7 @@ header {
 footer {
   margin-top: 40px;
   padding: 10px;
-  background: #DA291C; /* Brand Red */
+  background: #DA291C; 
   color: #FFFFFF;
   text-align: center;
 }
@@ -63,8 +63,8 @@ button {
   display: block;
   width: 100%;
   padding: 12px;
-  background: #FFA300; /* Brand Yellow */
-  color: #000000; /* Black text for contrast */
+  background: #FFA300; 
+  color: #000000; 
   border: none;
   border-radius: 5px;
   font-size: 16px;
@@ -74,7 +74,7 @@ button {
 }
 
 button:hover {
-  background: #DA291C; /* Brand Red hover */
+  background: #DA291C; 
   color: #FFFFFF;
 }
 
@@ -93,5 +93,5 @@ pre {
   margin-top: 20px;
   max-height: 200px;
   overflow-y: auto;
-  border-left: 5px solid #FFA300; /* Yellow accent */
+  border-left: 5px solid #FFA300; 
 }

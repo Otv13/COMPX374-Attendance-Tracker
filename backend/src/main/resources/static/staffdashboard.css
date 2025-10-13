@@ -7,12 +7,12 @@ body {
 }
 
 h1, h2 {
-  color: #000000; /* Black for headings */
+  color: #000000; 
 }
 
 /* ===== Layout ===== */
 header {
-  background: #DA291C; /* Pantone 485 Red */
+  background: #DA291C; 
   color: #FFFFFF;
   padding: 20px;
   text-align: center;
@@ -31,7 +31,7 @@ section {
 footer {
   margin-top: 40px;
   padding: 10px;
-  background: #DA291C; /* Brand Red */
+  background: #DA291C; 
   color: #FFFFFF;
   text-align: center;
 }
@@ -55,8 +55,8 @@ input, textarea, button {
 
 /* ===== Buttons ===== */
 button {
-  background: #FFA300; /* Pantone 137 Yellow */
-  color: #000000; /* Black text for contrast */
+  background: #FFA300; 
+  color: #000000; 
   border: none;
   border-radius: 5px;
   font-size: 15px;
@@ -65,7 +65,7 @@ button {
 }
 
 button:hover {
-  background: #DA291C; /* Brand Red on hover */
+  background: #DA291C; 
   color: #FFFFFF;
 }
 
@@ -78,10 +78,10 @@ button:hover {
 }
 
 a {
-  color: #DA291C; /* Brand Red for links */
+  color: #DA291C; 
   text-decoration: none;
 }
 
 a:hover {
-  color: #FFA300; /* Brand Yellow on hover */
+  color: #FFA300; 
 }

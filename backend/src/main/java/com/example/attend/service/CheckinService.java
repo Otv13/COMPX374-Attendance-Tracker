@@ -37,7 +37,7 @@ public class CheckinService {
         a.setIpTruncated(truncateIp(ip));
         a.setDeviceHash(hash(userAgent + "|" + a.getIpTruncated()));
 
-        // Late flag (null-safe)
+        // Late flag 
         boolean late = false;
         if (session.getStartTime() != null && session.getEndTime() != null) {
             late = now.isBefore(session.getStartTime()) || now.isAfter(session.getEndTime());
@@ -106,7 +106,8 @@ public class CheckinService {
             byte[] bytes = md.digest(s.getBytes());
             StringBuilder sb = new StringBuilder();
             for (byte b : bytes) {
-                sb.append(String.format("%02x", b));  //  manual hex encoding
+                //  manual hex encoding
+                sb.append(String.format("%02x", b));  
             }
             return sb.toString();
         } catch (Exception e) {

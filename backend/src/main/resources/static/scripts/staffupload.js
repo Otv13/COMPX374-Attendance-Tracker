@@ -25,7 +25,7 @@ document.getElementById("uploadRosterForm").addEventListener("submit", async (e)
       document.getElementById("output").textContent = JSON.stringify(data, null, 2);
     } catch (err) {
       console.error(err);
-      document.getElementById("output").textContent = "❌ Upload failed.";
+      document.getElementById("output").textContent = " Upload failed.";
     }
   });
   

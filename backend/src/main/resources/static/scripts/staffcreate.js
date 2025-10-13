@@ -24,14 +24,14 @@ document.getElementById("createSessionForm").addEventListener("submit", async (e
       const data = await res.json();
       const link = data.link || `/studentcheckin.html?token=${data.token}`;
       document.getElementById("output").innerHTML = `
-        ✅ <b>Session Created Successfully</b><br>
+         <b>Session Created Successfully</b><br>
         <b>Session ID:</b> ${data.sessionId}<br>
         <b>Token:</b> ${data.token}<br>
         <b>Student Link:</b> <a href="${link}" target="_blank">${link}</a>
       `;
     } catch (err) {
       console.error(err);
-      document.getElementById("output").textContent = "❌ Failed to create session.";
+      document.getElementById("output").textContent = " Failed to create session.";
     }
   });
   

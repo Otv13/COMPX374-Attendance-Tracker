@@ -19,7 +19,8 @@ import java.util.*;
 
 @RestController
 @RequestMapping("/api/staff")
-@RequiredArgsConstructor   // ensures repos get injected
+// ensures repos get injected
+@RequiredArgsConstructor   
 public class StaffController {
 
     private final SessionRepository sessionRepo;
@@ -29,7 +30,7 @@ public class StaffController {
     @Value("${APP_BASE_URL:http://localhost:8080}")
     private String baseUrl;
 
-    // FR1, FR3, FR4, FR5 – Create session
+    // FR1, FR3, FR4, FR5 this create session
     @PostMapping("/sessions")
     public Map<String, Object> createSession(@RequestBody Map<String, Object> body) {
         Session s = new Session();
@@ -55,7 +56,7 @@ public class StaffController {
         return Map.of("sessionId", s.getId(), "token", s.getToken(), "link", link);
     }
 
-    // FR2 – Roster import
+    // FR2 Roster import
     @PostMapping("/sessions/{id}/roster")
     public ResponseEntity<?> importRoster(@PathVariable("id") Long id,
                                           @RequestBody List<Map<String, String>> rows) {
@@ -76,11 +77,11 @@ public class StaffController {
             savedCount++;
         }
 
-        System.out.println("✅ Successfully saved " + savedCount + " students");
+        System.out.println(" Successfully saved " + savedCount + " students");
         return ResponseEntity.ok(Map.of("count", savedCount));
     }
 
-    // ✅ FR13 – List report (fixed with DTOs)
+    //  FR13 – List report (fixed with DTOs)
     @GetMapping("/sessions/{id}/report")
     public List<AttendanceReportDTO> report(@PathVariable("id") Long id) {
         Session s = sessionRepo.findById(id).orElseThrow();

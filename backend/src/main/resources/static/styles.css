@@ -9,7 +9,7 @@
 body {
   font-family: system-ui, Arial, sans-serif;
   background: #f9fafb;
-  color: #000000; /* Brand black */
+  color: #000000; 
   line-height: 1.6;
   padding: 1.5rem;
 }
@@ -21,12 +21,12 @@ header {
 }
 header h1 {
   font-size: 1.8rem;
-  color: #DA291C; /* Brand Red */
+  color: #DA291C; 
 }
 
 /* ===== Sections ===== */
 section {
-  background: #FFFFFF; /* Brand white */
+  background: #FFFFFF; 
   padding: 1.2rem;
   margin-bottom: 1.5rem;
   border-radius: 8px;
@@ -35,8 +35,8 @@ section {
 section h2 {
   margin-bottom: 0.8rem;
   font-size: 1.3rem;
-  color: #DA291C; /* Brand Red for subheadings */
-  border-bottom: 3px solid #FFA300; /* Brand Yellow accent */
+  color: #DA291C; 
+  border-bottom: 3px solid #FFA300; 
   display: inline-block;
   padding-bottom: 3px;
 }
@@ -69,8 +69,8 @@ button, a[download] {
   margin-top: 0.6rem;
   padding: 0.5rem 1rem;
   border: none;
-  background: #FFA300; /* Brand Yellow */
-  color: #000000; /* Black for contrast */
+  background: #FFA300; 
+  color: #000000; 
   border-radius: 4px;
   cursor: pointer;
   text-decoration: none;
@@ -84,8 +84,8 @@ button:disabled {
 }
 button:hover:not(:disabled),
 a[download]:hover {
-  background: #DA291C; /* Brand Red on hover */
-  color: #FFFFFF; /* White text for contrast */
+  background: #DA291C; 
+  color: #FFFFFF; 
 }
 
 /* ===== Output / Results ===== */
@@ -103,7 +103,7 @@ table {
   font-size: 0.9rem;
 }
 thead {
-  background: #DA291C; /* Brand Red header */
+  background: #DA291C; 
   color: #FFFFFF;
 }
 th, td {
@@ -112,5 +112,5 @@ th, td {
   text-align: center;
 }
 tbody tr:nth-child(even) {
-  background: #FFF6E0; /* Light tint of brand yellow for zebra rows */
+  background: #FFF6E0; 
 }

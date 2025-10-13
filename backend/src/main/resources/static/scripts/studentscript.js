@@ -1,4 +1,3 @@
-// Fix: should be URLSearchParams (plural)
 const params = new URLSearchParams(location.search);
 const token = params.get('token');
 
@@ -15,7 +14,7 @@ $('#btn').onclick = () => {
   $('#status').textContent = 'Requesting location…';
 
   navigator.geolocation.getCurrentPosition(async pos => {
-    // Success: got location
+    // Success got location
     const { latitude: lat, longitude: lng, accuracy } = pos.coords;
 
     const body = {
@@ -41,7 +40,7 @@ $('#btn').onclick = () => {
         : 'ok';
 
   }, async err => {
-    //  No location: still submit with nulls to record denied (FR12)
+    //  No location still submit with nulls to record denied (FR12)
     const body = {
       token,
       username: $('#u').value,

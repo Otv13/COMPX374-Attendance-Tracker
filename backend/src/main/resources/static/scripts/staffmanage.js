@@ -18,8 +18,8 @@ async function loadSessions() {
         <td>${s.startTime}</td>
         <td>${s.endTime}</td>
         <td>
-          <button onclick="viewReport(${s.id})">📄 Report</button>
-          <button onclick="deleteSession(${s.id})">🗑️ Delete</button>
+          <button onclick="viewReport(${s.id})"> Report</button>
+          <button onclick="deleteSession(${s.id})"> Delete</button>
         </td>
       `;
       tbody.appendChild(tr);
@@ -44,6 +44,5 @@ async function loadSessions() {
   
   document.getElementById("refreshSessions").addEventListener("click", loadSessions);
   
-  // Auto-load on page open
   loadSessions();
   

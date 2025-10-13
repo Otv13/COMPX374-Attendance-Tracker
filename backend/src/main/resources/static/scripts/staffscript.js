@@ -35,8 +35,8 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
       }
     } catch (err) {
-      console.error("❌ Error creating session:", err);
-      output.textContent = `❌ ${err.message}`;
+      console.error(" Error creating session:", err);
+      output.textContent = ` ${err.message}`;
     }
   });
 });

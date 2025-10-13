@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 
 /**
- * Minimal Report API that DOES NOT modify your existing code.
+ * Report API
  * Base path: /api/report
  * Endpoints:
  *   - JSON: GET /api/report/sessions/{id}?page=0&size=50&privacy=true
@@ -28,7 +28,7 @@ public class ReportController {
     }
 
     /**
-     * JSON (paged)
+     * JSON paged
      * GET /api/report/sessions/1?page=0&size=50&privacy=true
      */
     @GetMapping("/sessions/{id}")

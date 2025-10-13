@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // ✅ All your code goes INSIDE this block
+ 
 
-  let sessionId = 1; // change if your DB shows a different ID
+  let sessionId = 1; 
   let token = null;
   const $ = sel => document.querySelector(sel);
 
@@ -47,13 +47,13 @@ document.addEventListener('DOMContentLoaded', () => {
   $('#upload')?.addEventListener('click', async () => {
     try {
       const raw = $('#roster').value;
-      console.log("📥 Raw roster input:", raw);
+      console.log(" Raw roster input:", raw);
 
       let rows;
       try {
         rows = JSON.parse(raw);
       } catch (e) {
-        console.error("❌ Failed to parse roster JSON:", e);
+        console.error(" Failed to parse roster JSON:", e);
         alert("Invalid JSON in roster textarea");
         return;
       }
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const data = await res.json();
       $('#rosterResult').textContent = `Imported ${data.count} students.`;
     } catch (err) {
-      console.error("🔥 Upload roster failed:", err);
+      console.error(" Upload roster failed:", err);
       alert('Failed to upload roster');
     }
   });
@@ -75,10 +75,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // ----------------- Refresh Report -----------------
   $('#refresh')?.addEventListener('click', async () => {
     try {
-      console.log("🔄 Fetching attendance report for session:", sessionId);
+      console.log(" Fetching attendance report for session:", sessionId);
       const res = await fetch(`/api/staff/sessions/${sessionId}/report`);
       const list = await res.json();
-      console.log("✅ Received data:", list);
+      console.log(" Received data:", list);
 
       const tbody = $('#tbl tbody');
       if (!tbody) return;
@@ -102,9 +102,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const acc = a.accuracyMeters || '';
         const ip = a.ipTruncated || '';
         const device = a.deviceHash || '';
-        const late = a.flagLate ? "⚠️" : "";
-        const geo = a.flagGeofence ? "🚫" : "";
-        const lowAcc = a.flagLowAccuracy ? "⚠️" : "";
+        const late = a.flagLate ? "" : "";
+        const geo = a.flagGeofence ? "" : "";
+        const lowAcc = a.flagLowAccuracy ? "" : "";
         const note = a.flagNote || '';
 
         tr.innerHTML = `
@@ -126,11 +126,11 @@ document.addEventListener('DOMContentLoaded', () => {
         tbody.appendChild(tr);
       }
 
-      console.log(`📊 Rendered ${list.length} attendance records`);
+      console.log(` Rendered ${list.length} attendance records`);
     } catch (err) {
-      console.error("❌ Failed to refresh report:", err);
+      console.error(" Failed to refresh report:", err);
       alert('Failed to refresh report. Check console for details.');
     }
   });
 
-}); // ✅ DOMContentLoaded end
+}); 

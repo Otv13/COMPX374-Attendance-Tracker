@@ -1,6 +1,7 @@
+/**
 package com.example.attend.service;
 
-import com.example.attend.dto.SimpleAttendanceRow;
+import com.example.attend.dto.AttendanceReportDTO;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
@@ -20,7 +21,7 @@ public class SimpleReportService {
     @PersistenceContext
     private EntityManager em;
 
-    public Page<SimpleAttendanceRow> pageForSession(Long sessionId, boolean privacy, int page, int size) {
+    public Page<AttendanceReportDTO> pageForSession(Long sessionId, boolean privacy, int page, int size) {
 
         String jpql =
             "SELECT new com.example.attend.dto.SimpleAttendanceRow(" +
@@ -38,7 +39,7 @@ public class SimpleReportService {
         int p = Math.max(page, 0);
         int sz = Math.max(size, 1);
 
-        TypedQuery<SimpleAttendanceRow> q = em.createQuery(jpql, SimpleAttendanceRow.class)
+        TypedQuery<AttendanceReportDTO> q = em.createQuery(jpql, AttendanceReportDTO.class)
                 .setParameter("sid", sessionId)
                 .setFirstResult(p * sz)
                 .setMaxResults(sz);
@@ -47,14 +48,14 @@ public class SimpleReportService {
                 .setParameter("sid", sessionId)
                 .getSingleResult();
 
-        List<SimpleAttendanceRow> list = q.getResultList();
+        List<AttendanceReportDTO> list = q.getResultList();
 
         if (privacy && !list.isEmpty()) {
-            List<SimpleAttendanceRow> hashed = new ArrayList<>(list.size());
-            for (SimpleAttendanceRow r : list) {
+            List<AttendanceReportDTO> hashed = new ArrayList<>(list.size());
+            for (AttendanceReportDTO r : list) {
                 String uname = anonymise(r.username);
                 String sid   = anonymise(r.studentId);
-                hashed.add(new SimpleAttendanceRow(
+                hashed.add(new AttendanceReportDTO(
                         r.attendanceId, r.sessionId, uname, sid,
                         r.timestamp, r.late, r.geofence, r.lowAccuracy, r.note
                 ));
@@ -87,3 +88,5 @@ public class SimpleReportService {
         return new String(hexChars);
     }
 }
+
+ */

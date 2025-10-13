@@ -1,5 +1,6 @@
 package com.example.attend.web;
 
+import com.example.attend.dto.AttendanceReportDTO;
 import com.example.attend.model.Attendance;
 import com.example.attend.model.Session;
 import com.example.attend.model.Student;
@@ -13,11 +14,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.nio.charset.StandardCharsets;
 import java.time.Instant;
+import java.time.ZoneId;
 import java.util.*;
 
 @RestController
 @RequestMapping("/api/staff")
-@RequiredArgsConstructor   //  ensures repos get injected
+@RequiredArgsConstructor   // ensures repos get injected
 public class StaffController {
 
     private final SessionRepository sessionRepo;
@@ -53,37 +55,56 @@ public class StaffController {
         return Map.of("sessionId", s.getId(), "token", s.getToken(), "link", link);
     }
 
- // FR2 – Roster import
-@PostMapping("/sessions/{id}/roster")
-public ResponseEntity<?> importRoster(@PathVariable("id") Long id,
-                                      @RequestBody List<Map<String, String>> rows) {
-    System.out.println("📥 Import roster called for sessionId=" + id);
-    System.out.println("📦 Incoming rows: " + rows);
+    // FR2 – Roster import
+    @PostMapping("/sessions/{id}/roster")
+    public ResponseEntity<?> importRoster(@PathVariable("id") Long id,
+                                          @RequestBody List<Map<String, String>> rows) {
+        System.out.println("📥 Import roster called for sessionId=" + id);
+        System.out.println("📦 Incoming rows: " + rows);
 
-    Session s = sessionRepo.findById(id).orElseThrow();
+        Session s = sessionRepo.findById(id).orElseThrow();
 
-    int savedCount = 0;
-    for (Map<String, String> r : rows) {
-        System.out.println("➡️ Processing row: " + r);
-        Student st = new Student();
-        st.setSession(s);
-        st.setUsername(r.get("username"));
-        st.setStudentId(r.get("studentId"));
-        st.setName(r.getOrDefault("name", ""));
-        studentRepo.save(st);
-        savedCount++;
+        int savedCount = 0;
+        for (Map<String, String> r : rows) {
+            System.out.println("➡️ Processing row: " + r);
+            Student st = new Student();
+            st.setSession(s);
+            st.setUsername(r.get("username"));
+            st.setStudentId(r.get("studentId"));
+            st.setName(r.getOrDefault("name", ""));
+            studentRepo.save(st);
+            savedCount++;
+        }
+
+        System.out.println("✅ Successfully saved " + savedCount + " students");
+        return ResponseEntity.ok(Map.of("count", savedCount));
     }
 
-    System.out.println(" Successfully saved " + savedCount + " students");
-    return ResponseEntity.ok(Map.of("count", savedCount));
-}
-
-
-    // FR13 – List report
+    // ✅ FR13 – List report (fixed with DTOs)
     @GetMapping("/sessions/{id}/report")
-    public List<Attendance> report(@PathVariable("id") Long id) {
+    public List<AttendanceReportDTO> report(@PathVariable("id") Long id) {
         Session s = sessionRepo.findById(id).orElseThrow();
-        return attendanceRepo.findBySession(s);
+        List<Attendance> records = attendanceRepo.findBySession(s);
+
+        return records.stream()
+                .map(a -> new AttendanceReportDTO(
+                        a.getStudentUsername(),
+                        a.getStudentId(),
+                        a.getStudentName(),
+                        a.getSubmittedAt() != null
+                                ? a.getSubmittedAt().atZone(ZoneId.systemDefault()).toLocalDateTime()
+                                : null,
+                        a.getLat(),
+                        a.getLng(),
+                        a.getAccuracyMeters(),
+                        a.getIpTruncated(),
+                        a.getDeviceHash(),
+                        a.isFlagLate(),
+                        a.isFlagGeofence(),
+                        a.isFlagLowAccuracy(),
+                        a.getFlagNote()
+                ))
+                .toList();
     }
 
     // FR14 – CSV export

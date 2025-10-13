@@ -1,6 +1,12 @@
-package com.example.attend.web;
+/**
+ * Minimal Report API that DOES NOT modify your existing code.
+ * Base path: /api/report
+ * Endpoints:
+ *   - JSON: GET /api/report/sessions/{id}?page=0&size=50&privacy=true
+ *   - CSV : GET /api/report/sessions/{id}.csv?privacy=true
 
-import com.example.attend.dto.SimpleAttendanceRow;          
+ com.example.attend.web;
+
 import com.example.attend.service.SimpleReportService;     
 import org.springframework.data.domain.Page;                 
 import org.springframework.http.HttpHeaders;                 
@@ -10,13 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import jakarta.servlet.http.HttpServletResponse;             
 import java.io.PrintWriter;                                  
 
-/**
- * Minimal Report API that DOES NOT modify your existing code.
- * Base path: /api/report
- * Endpoints:
- *   - JSON: GET /api/report/sessions/{id}?page=0&size=50&privacy=true
- *   - CSV : GET /api/report/sessions/{id}.csv?privacy=true
- */
+
 @RestController 
 @RequestMapping("/api/report") 
 public class ReportController { 
@@ -31,9 +31,9 @@ public class ReportController {
     /**
      * JSON (paged)
      * GET /api/report/sessions/1?page=0&size=50&privacy=true
-     */
+  
     @GetMapping("/sessions/{id}")
-    public Page<SimpleAttendanceRow> getReport(
+    public Page<AttendanceReportDTO> getReport(
             @PathVariable("id") Long sessionId,
             @RequestParam(value = "privacy", required = false, defaultValue = "false") boolean privacy,
             @RequestParam(value = "page", required = false, defaultValue = "0") int page,
@@ -43,10 +43,7 @@ public class ReportController {
         return reportService.pageForSession(sessionId, privacy, page, size);
     }
 
-    /**
-     * CSV download
-     * GET /api/report/sessions/1.csv?privacy=true
-     */
+ 
     @GetMapping(value = "/sessions/{id}.csv", produces = "text/csv")
     public void exportCsv(
             @PathVariable("id") Long sessionId,
@@ -58,14 +55,14 @@ public class ReportController {
         response.setContentType(MediaType.TEXT_PLAIN_VALUE);
 
         // fetch a big single page for a simple CSV 
-        Page<SimpleAttendanceRow> page = reportService.pageForSession(sessionId, privacy, 0, 10_000);
+        Page<AttendanceReportDTO> page = reportService.pageForSession(sessionId, privacy, 0, 10_000);
 
         try (PrintWriter w = response.getWriter()) {
             // CSV header
             w.println("attendanceId,sessionId,username,studentId,timestamp,late,geofence,lowAccuracy,note");
 
             // SimpleAttendanceRow is a plain class with public fields 
-            for (SimpleAttendanceRow r : page.getContent()) {
+            for (AttendanceReportDTO r : page.getContent()) {
                 w.printf("%s,%s,%s,%s,%s,%s,%s,%s,%s%n",
                         n(r.attendanceId),
                         n(r.sessionId),
@@ -90,3 +87,5 @@ public class ReportController {
     }
     private String n(Long v) { return v == null ? "" : v.toString(); }
 }
+
+   */

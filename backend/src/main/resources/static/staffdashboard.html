@@ -3,109 +3,38 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Staff – Session Management</title>
+  <title>Staff Summary – Attendance Report</title>
   <link rel="stylesheet" href="staffdashboard.css" />
 </head>
 <body>
   <header>
-    <h1>Staff – Session Management</h1>
-    <p>Create sessions, import rosters, and manage classes</p>
+    <h1>Attendance Report</h1>
+    <p>Review attendance, check location flags, and export records</p>
   </header>
 
-  <!-- Session Creation -->
   <section>
-    <h2>Create Session</h2>
-    <form id="sessionForm">
-      <label>Course Code:
-        <input id="course" type="text" placeholder="COMPX374" />
-      </label>
-      <label>Owner Email:
-        <input id="owner" type="email" placeholder="staff@waikato.ac.nz" />
-      </label>
-      <label>Start (UTC ISO):
-        <input id="start" type="text" placeholder="2025-09-25T08:00:00Z" />
-      </label>
-      <label>End (UTC ISO):
-        <input id="end" type="text" placeholder="2025-09-25T10:00:00Z" />
-      </label>
-
-      <details>
-        <summary>Geofence (optional)</summary>
-        <label>Latitude:
-          <input id="lat" type="number" step="0.000001" placeholder="-37.789000" />
-        </label>
-        <label>Longitude:
-          <input id="lng" type="number" step="0.000001" placeholder="175.279000" />
-        </label>
-        <label>Radius (m):
-          <input id="rad" type="number" value="150" />
-        </label>
-      </details>
-
-      <button type="button" id="create">Create Session</button>
-
-      <button onclick="document.location='index.html'"> Return to Home Page</button>
-
-
-      
-      
-
-    </form>
-    <div id="link" class="output"></div>
-  </section>
-
-  <!-- Roster Import -->
-  <section>
-    <h2>Import Roster</h2>
-    <p>Paste JSON array of <code>{username, studentId, name}</code> rows:</p>
-    <textarea id="roster" rows="6">[
-  {"username":"sally","studentId":"1001","name":"Sally Student"},
-  {"username":"tom","studentId":"1002","name":"Tom Learner"}
-]</textarea>
-    <button id="upload" disabled>Upload to Session</button>
-    <div id="rosterResult" class="output"></div>
-  </section>
-
-  <!-- Manage Classes -->
-  <section>
-    <h2>Manage Classes</h2>
-    <p>View and manage your created sessions below:</p>
-    <div id="sessionList" class="output">
-      <p>No sessions yet. Create one above to get started.</p>
-    </div>
-  </section>
-
-  <!-- Attendance Report -->
-  <section>
-    <h2>Attendance Report</h2>
     <div class="report-controls">
-      <button id="refresh" disabled>Refresh Report</button>
+      <button id="refresh" >Refresh Report</button>
       <a id="export" href="#" download>Download CSV</a>
     </div>
 
     <table id="tbl">
       <thead>
         <tr>
-          <th>User</th>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Time</th>
-          <th>Lat</th>
-          <th>Lng</th>
-          <th>Acc (m)</th>
-          <th>IP (/24 or /64)</th>
-          <th>Device Hash</th>
-          <th>Late</th>
-          <th>Geo</th>
-          <th>LowAcc</th>
-          <th>Note</th>
+          <th>User</th><th>ID</th><th>Name</th><th>Time</th>
+          <th>Lat</th><th>Lng</th><th>Acc (m)</th>
+          <th>IP (/24 or /64)</th><th>Device Hash</th>
+          <th>Late</th><th>Geo</th><th>LowAcc</th><th>Note</th>
         </tr>
       </thead>
       <tbody></tbody>
     </table>
   </section>
 
-
+  <footer>
+    <p>&copy; 2025 Attendance Tracker – Group N</p>
+    <button onclick="document.location='index.html'">Return to Home Page</button>
+  </footer>
 
   <script src="scripts/indexscript.js"></script>
 </body>

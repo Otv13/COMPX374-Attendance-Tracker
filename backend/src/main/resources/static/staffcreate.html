@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create New Session – Staff</title>
+  <link rel="stylesheet" href="staffdashboard.css" />
+</head>
+<body>
+  <header>
+    <h1>Create New Attendance Session</h1>
+    <p>Set session details and generate a student check-in link.</p>
+  </header>
+
+  <main>
+    <form id="createSessionForm">
+      <label>Course Code:</label>
+      <input type="text" id="courseCode" required />
+
+      <label>Staff Email:</label>
+      <input type="email" id="ownerEmail" required />
+
+      <label>Start Time:</label>
+      <input type="datetime-local" id="startTime" required />
+
+      <label>End Time:</label>
+      <input type="datetime-local" id="endTime" required />
+
+      <label>Geofence Latitude (optional):</label>
+      <input type="number" step="any" id="geofenceLat" placeholder="-37.787" />
+
+      <label>Geofence Longitude (optional):</label>
+      <input type="number" step="any" id="geofenceLng" placeholder="175.319" />
+
+      <label>Geofence Radius (m, optional):</label>
+      <input type="number" id="geofenceRadiusMeters" placeholder="150" />
+
+      <button type="submit">Create Session</button>
+    </form>
+
+    <section id="result">
+      <h3>Result:</h3>
+      <pre id="output">No session created yet.</pre>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Attendance Tracker – Group N</p>
+    <button onclick="document.location='staffdashboard.html'">Return to Dashboard</button>
+  </footer>
+
+  <script src="scripts/staffcreate.js"></script>
+</body>
+</html>

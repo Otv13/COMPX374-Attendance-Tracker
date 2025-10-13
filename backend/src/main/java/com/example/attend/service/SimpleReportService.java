@@ -1,4 +1,3 @@
-/**
 package com.example.attend.service;
 
 import com.example.attend.dto.AttendanceReportDTO;
@@ -24,8 +23,9 @@ public class SimpleReportService {
     public Page<AttendanceReportDTO> pageForSession(Long sessionId, boolean privacy, int page, int size) {
 
         String jpql =
-            "SELECT new com.example.attend.dto.SimpleAttendanceRow(" +
-            "  a.id, s.id, a.studentUsername, a.studentId, a.submittedAt, " +
+            "SELECT new com.example.attend.dto.AttendanceReportDTO(" +
+            "  a.studentUsername, a.studentId, a.studentName, a.submittedAt, " +
+            "  a.lat, a.lng, a.accuracyMeters, a.ipTruncated, a.deviceHash, " +
             "  a.flagLate, a.flagGeofence, a.flagLowAccuracy, a.flagNote" +
             ") " +
             "FROM Attendance a " +
@@ -53,11 +53,14 @@ public class SimpleReportService {
         if (privacy && !list.isEmpty()) {
             List<AttendanceReportDTO> hashed = new ArrayList<>(list.size());
             for (AttendanceReportDTO r : list) {
-                String uname = anonymise(r.username);
-                String sid   = anonymise(r.studentId);
+                String uname = anonymise(r.studentUsername());
+                String sid   = anonymise(r.studentId());
                 hashed.add(new AttendanceReportDTO(
-                        r.attendanceId, r.sessionId, uname, sid,
-                        r.timestamp, r.late, r.geofence, r.lowAccuracy, r.note
+                        uname, sid, r.studentName(), r.submittedAt(),
+                        r.lat(), r.lng(), r.accuracyMeters(),
+                        r.ipTruncated(), r.deviceHash(),
+                        r.flagLate(), r.flagGeofence(), r.flagLowAccuracy(),
+                        r.flagNote()
                 ));
             }
             list = hashed;
@@ -88,5 +91,3 @@ public class SimpleReportService {
         return new String(hexChars);
     }
 }
-
- */

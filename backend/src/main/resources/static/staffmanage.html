@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manage Sessions – Staff</title>
+  <link rel="stylesheet" href="staffdashboard.css" />
+</head>
+<body>
+  <header>
+    <h1>Manage Sessions</h1>
+    <p>View, monitor, and delete attendance sessions.</p>
+  </header>
+
+  <main>
+    <button id="refreshSessions">Refresh List</button>
+
+    <table id="sessionsTbl">
+      <thead>
+        <tr>
+          <th>Session ID</th><th>Course Code</th><th>Owner</th>
+          <th>Start</th><th>End</th><th>Actions</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <pre id="output"></pre>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Attendance Tracker – Group N</p>
+    <button onclick="document.location='staffdashboard.html'">Return to Dashboard</button>
+  </footer>
+
+  <script src="scripts/staffmanage.js"></script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Upload Roster – Staff</title>
+  <link rel="stylesheet" href="staffdashboard.css" />
+</head>
+<body>
+  <header>
+    <h1>Upload Student Roster</h1>
+    <p>Upload a CSV roster file for a specific session.</p>
+  </header>
+
+  <main>
+    <form id="uploadRosterForm">
+      <label>Session ID:</label>
+      <input type="number" id="sessionId" required />
+
+      <label>Roster File (.csv):</label>
+      <input type="file" id="rosterFile" accept=".csv" required />
+
+      <button type="submit">Upload Roster</button>
+    </form>
+
+    <section id="result">
+      <h3>Upload Result:</h3>
+      <pre id="output">No upload yet.</pre>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Attendance Tracker – Group N</p>
+    <button onclick="document.location='staffdashboard.html'">Return to Dashboard</button>
+  </footer>
+
+  <script src="scripts/staffupload.js"></script>
+</body>
+</html>

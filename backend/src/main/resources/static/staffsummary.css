@@ -1,0 +1,26 @@
+#create-section {
+    background: #fff;
+    padding: 20px;
+    max-width: 600px;
+    margin: 20px auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+  #create-section form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  #create-section input, button {
+    padding: 8px;
+    font-size: 14px;
+  }
+  #result {
+    margin-top: 20px;
+  }
+  pre {
+    background: #f8f8f8;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  

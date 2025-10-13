@@ -12,9 +12,21 @@
     <p>Review attendance, check location flags, and export records</p>
   </header>
 
+  <!-- 🔹 Staff Tool Navigation -->
+  <section id="staff-actions">
+    <h2>Staff Tools</h2>
+    <div class="staff-buttons">
+      <button id="createSession">Create Session</button>
+      <button id="uploadRoster">Upload Roster</button>
+      <button id="generateReport">Generate Report</button>
+      <button id="manageSessions">Manage Sessions</button>
+    </div>
+  </section>
+
+  <!-- 🔹 Attendance Table -->
   <section>
     <div class="report-controls">
-      <button id="refresh" >Refresh Report</button>
+      <button id="refresh">Refresh Report</button>
       <a id="export" href="#" download>Download CSV</a>
     </div>
 
@@ -36,6 +48,6 @@
     <button onclick="document.location='index.html'">Return to Home Page</button>
   </footer>
 
-  <script src="scripts/indexscript.js"></script>
+  <script src="scripts/staffsummary.js"></script>
 </body>
 </html>

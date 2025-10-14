@@ -10,6 +10,17 @@ h1, h2 {
   color: #000000; 
 }
 
+select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+
 /* ===== Layout ===== */
 header {
   background: #DA291C; 

@@ -26,15 +26,20 @@
       <label>End Time:</label>
       <input type="datetime-local" id="endTime" required />
 
-      <label>Geofence Latitude (optional):</label>
-      <input type="number" step="any" id="geofenceLat" placeholder="-37.787" />
-
-      <label>Geofence Longitude (optional):</label>
-      <input type="number" step="any" id="geofenceLng" placeholder="175.319" />
-
-      <label>Geofence Radius (m, optional):</label>
-      <input type="number" id="geofenceRadiusMeters" placeholder="150" />
-
+            <!-- ===== Geofence Selection ===== -->
+            <label>Geofence Location:</label>
+            <select id="geofenceSelect">
+              <option value="">-- Select Building (optional) --</option>
+              <option value="G Block ">Block G  </option>
+              <option value="lBlock ">Block L </option>
+              <option value="sBlock ">Block S </option>
+              <option value="jblock">Block J </option>
+            </select>
+      
+            <!-- Radius (optional, still adjustable) -->
+            <label>Geofence Radius (m, optional):</label>
+            <input type="number" id="geofenceRadiusMeters" placeholder="150" />
+      
       <button type="submit">Create Session</button>
     </form>
 

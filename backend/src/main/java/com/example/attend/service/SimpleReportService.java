@@ -1,93 +1,31 @@
 package com.example.attend.service;
 
 import com.example.attend.dto.AttendanceReportDTO;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
-import jakarta.persistence.TypedQuery;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.stereotype.Service;
-
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.util.ArrayList;
 import java.util.List;
 
-@Service
-public class SimpleReportService {
+/**
+ * Service interface for attendance reporting.
+ * Provides paginated session reports and full database exports.
+ */
+public interface SimpleReportService {
 
-    @PersistenceContext
-    private EntityManager em;
+    /**
+     * Retrieves paginated attendance report for a given session.
+     *
+     * @param sessionId The session ID.
+     * @param privacy   Whether to anonymize usernames and IDs.
+     * @param page      Page index.
+     * @param size      Page size.
+     * @return Page of AttendanceReportDTO objects.
+     */
+    Page<AttendanceReportDTO> pageForSession(Long sessionId, boolean privacy, int page, int size);
 
-    public Page<AttendanceReportDTO> pageForSession(Long sessionId, boolean privacy, int page, int size) {
-
-        String jpql =
-            "SELECT new com.example.attend.dto.AttendanceReportDTO(" +
-            "  a.studentUsername, a.studentId, a.studentName, a.submittedAt, " +
-            "  a.lat, a.lng, a.accuracyMeters, a.ipTruncated, a.deviceHash, " +
-            "  a.flagLate, a.flagGeofence, a.flagLowAccuracy, a.flagNote" +
-            ") " +
-            "FROM Attendance a " +
-            "JOIN a.session s " +
-            "WHERE s.id = :sid " +
-            "ORDER BY a.submittedAt DESC";
-
-        String countJpql =
-            "SELECT COUNT(a) FROM Attendance a JOIN a.session s WHERE s.id = :sid";
-
-        int p = Math.max(page, 0);
-        int sz = Math.max(size, 1);
-
-        TypedQuery<AttendanceReportDTO> q = em.createQuery(jpql, AttendanceReportDTO.class)
-                .setParameter("sid", sessionId)
-                .setFirstResult(p * sz)
-                .setMaxResults(sz);
-
-        Long total = em.createQuery(countJpql, Long.class)
-                .setParameter("sid", sessionId)
-                .getSingleResult();
-
-        List<AttendanceReportDTO> list = q.getResultList();
-
-        if (privacy && !list.isEmpty()) {
-            List<AttendanceReportDTO> hashed = new ArrayList<>(list.size());
-            for (AttendanceReportDTO r : list) {
-                String uname = anonymise(r.studentUsername());
-                String sid   = anonymise(r.studentId());
-                hashed.add(new AttendanceReportDTO(
-                        uname, sid, r.studentName(), r.submittedAt(),
-                        r.lat(), r.lng(), r.accuracyMeters(),
-                        r.ipTruncated(), r.deviceHash(),
-                        r.flagLate(), r.flagGeofence(), r.flagLowAccuracy(),
-                        r.flagNote()
-                ));
-            }
-            list = hashed;
-        }
-
-        return new PageImpl<>(list, PageRequest.of(p, sz), total);
-    }
-
-    private String anonymise(String s) {
-        if (s == null) return null;
-        try {
-            MessageDigest md = MessageDigest.getInstance("SHA-256");
-            byte[] dig = md.digest(s.getBytes(StandardCharsets.UTF_8));
-            return "id_" + bytesToHex(dig).substring(0, 10);
-        } catch (Exception e) {
-            return "id_x";
-        }
-    }
-
-    private static String bytesToHex(byte[] bytes) {
-        char[] hexArray = "0123456789abcdef".toCharArray();
-        char[] hexChars = new char[bytes.length * 2];
-        for (int j = 0; j < bytes.length; j++) {
-            int v = bytes[j] & 0xFF;
-            hexChars[j * 2]     = hexArray[v >>> 4];
-            hexChars[j * 2 + 1] = hexArray[v & 0x0F];
-        }
-        return new String(hexChars);
-    }
+    /**
+     * Retrieves all attendance records from the database (no pagination).
+     * Used for CSV report exports.
+     *
+     * @return List of all AttendanceReportDTO objects.
+     */
+    List<AttendanceReportDTO> findAllReports();
 }

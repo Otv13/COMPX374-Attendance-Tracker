@@ -4,47 +4,68 @@ body {
   background: #f0f2f5;
   margin: 0;
   padding: 0;
-}
 
-h1, h2 {
-  color: #000000; 
-}
-
-/* ===== Layout ===== */
-header {
-  background: #DA291C; 
-  color: #FFFFFF;
-  padding: 20px;
+  /* ✅ Center layout */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
 }
 
+/* ===== Header ===== */
+header {
+  background: #DA291C;
+  color: #FFFFFF;
+  padding: 20px;
+  width: 100%;
+  text-align: center;
+}
+
+h1, h2, h3, p {
+  margin: 10px 0;
+  text-align: center;
+  color: #000000;
+}
+
+/* ===== Main Section ===== */
 section {
-  margin: 30px auto;
-  width: 95%;
-  max-width: 800px;
   background: #FFFFFF;
   padding: 30px;
   border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 600px;
+  margin: 30px auto;
+  text-align: center;
 }
 
 /* ===== Form Styles ===== */
 form {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 12px;
+  width: 100%;
 }
 
 label {
+  display: block;
   font-weight: bold;
   color: #000000;
+  margin-top: 10px;
+  text-align: center;
 }
 
 input {
+  display: block;
+  width: 80%;
+  max-width: 400px;
+  margin: 5px auto 15px;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 14px;
+  text-align: center;
 }
 
 input:focus {
@@ -54,12 +75,16 @@ input:focus {
 
 /* ===== Buttons ===== */
 button {
-  padding: 10px 14px;
+  display: block;
+  width: 80%;
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 12px;
   border: none;
   border-radius: 5px;
   font-size: 15px;
   cursor: pointer;
-  background: #FFA300; /* Brand Yellow */
+  background: #FFA300;
   color: #000000;
   font-weight: bold;
   transition: all 0.3s ease;
@@ -74,31 +99,36 @@ button:hover {
 pre {
   background: #f9f9f9;
   padding: 15px;
-  border-radius: 5px;
-  border: 1px solid #ddd;
+  border-radius: 8px;
+  border-left: 5px solid #FFA300;
   overflow-x: auto;
   font-size: 14px;
   color: #333;
+  width: 90%;
+  max-width: 600px;  /* ✅ wider and matches studentcheckin */
+  margin: 20px auto;
+  text-align: left;
 }
 
 /* ===== Footer ===== */
 footer {
-  margin-top: 40px;
-  padding: 10px;
-  background: #DA291C; /* Brand Red */
+  background: #DA291C;
   color: #FFFFFF;
+  width: 100%;
   text-align: center;
+  padding: 15px 0;
+  margin-top: 40px;
 }
 
 footer button {
-  margin-top: 10px;
   background: #FFA300;
   color: #000000;
   border: none;
-  padding: 8px 12px;
   border-radius: 5px;
+  padding: 10px 20px;
   font-weight: bold;
   cursor: pointer;
+  margin-top: 10px;
 }
 
 footer button:hover {

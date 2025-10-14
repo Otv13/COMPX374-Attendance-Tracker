@@ -4,77 +4,81 @@ body {
   background: #f0f2f5;
   margin: 0;
   padding: 0;
+
+  /* ✅ Center everything vertically + horizontally */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
 }
 
+/* ===== Header ===== */
+header {
+  background: #DA291C;
+  color: #FFFFFF;
+  padding: 20px;
+  width: 100%;
+  text-align: center;
+}
+
+h1, h2, h3, p {
+  margin: 10px 0;
+  text-align: center;
+  color: #000000;
+}
+
+/* ===== Main Container ===== */
+.container {
+  background: #FFFFFF;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 500px;
+  margin: 30px auto;
+  text-align: center;
+}
+
+/* ===== Labels & Inputs ===== */
 label {
   display: block;
   margin: 10px 0 5px;
   font-weight: bold;
-  color: #000000; 
-}
-
-.ok { 
-  color: #27ae60;
-}
-
-.err { 
-  color: #DA291C; 
-}
-
-/* ===== Layout ===== */
-header {
-  background: #DA291C; 
-  color: #FFFFFF;
-  padding: 20px;
-}
-
-.container {
-  margin: 30px auto;
-  width: 90%;
-  max-width: 500px;
-  background: #FFFFFF;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  text-align: left;
-}
-
-footer {
-  margin-top: 40px;
-  padding: 10px;
-  background: #DA291C; 
-  color: #FFFFFF;
+  color: #000000;
   text-align: center;
 }
 
-/* ===== Forms ===== */
 input {
-  width: 100%;
+  display: block;
+  width: 80%;
+  max-width: 400px;
+  margin: 10px auto;
   padding: 10px;
-  margin-bottom: 15px;
   border: 1px solid #ccc;
   border-radius: 5px;
   box-sizing: border-box;
+  text-align: center;
 }
 
 /* ===== Buttons ===== */
 button {
-  display: block;
-  width: 100%;
-  padding: 12px;
-  background: #FFA300; 
-  color: #000000; 
+  background: #FFA300;
+  color: #000000;
   border: none;
   border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
   font-weight: bold;
-  transition: background 0.3s ease;
+  transition: background 0.3s;
+  display: block;
+  width: 80%;
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 12px;
 }
 
 button:hover {
-  background: #DA291C; 
+  background: #DA291C;
   color: #FFFFFF;
 }
 
@@ -93,5 +97,49 @@ pre {
   margin-top: 20px;
   max-height: 200px;
   overflow-y: auto;
-  border-left: 5px solid #FFA300; 
+  border-left: 5px solid #FFA300;
+  text-align: left;
+  width: 90%;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ===== Footer ===== */
+footer {
+  background: #DA291C;
+  color: #FFFFFF;
+  width: 100%;
+  text-align: center;
+  padding: 15px 0;
+  margin-top: 40px;
+}
+
+footer p {
+  margin: 0;
+}
+
+footer button {
+  background: #FFA300;
+  color: #000000;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+footer button:hover {
+  background: #FFFFFF;
+  color: #DA291C;
+}
+
+/* ===== Status Colors ===== */
+.ok {
+  color: #27ae60;
+}
+
+.err {
+  color: #DA291C;
 }

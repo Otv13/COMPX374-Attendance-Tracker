@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Generate Attendance Report</title>
+  <link rel="stylesheet" href="staffdashboard.css" />
+  <style>
+    body {
+      text-align: center;
+      background: #f7f7f7;
+      font-family: Arial, sans-serif;
+    }
+    main {
+      background: #fff;
+      width: 450px;
+      margin: 80px auto;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #da291c;
+      margin-bottom: 10px;
+    }
+    select, button {
+      padding: 10px;
+      margin: 10px;
+      width: 80%;
+      font-size: 15px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background: #ffa300;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+    button:hover {
+      background: #da291c;
+      color: white;
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #333;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <h1>Generate Attendance Report</h1>
+    <p>Select a session or download all reports in CSV format.</p>
+
+    <label for="sessionSelect">Session:</label><br />
+    <select id="sessionSelect">
+      <option value="all">All Sessions</option>
+      <option value="1">Session 1</option>
+      <option value="2">Session 2</option>
+    </select><br />
+
+    <label>
+      <input type="checkbox" id="privacyToggle" />
+      Anonymize student data
+    </label><br />
+
+    <button id="generateCsvBtn">Download CSV</button>
+
+    <div id="result">No report generated yet.</div>
+
+    <br />
+    <button onclick="document.location='staffdashboard.html'">
+      ← Back to Dashboard
+    </button>
+  </main>
+
+  <script>
+    document.getElementById("generateCsvBtn").addEventListener("click", async () => {
+      const session = document.getElementById("sessionSelect").value;
+      const privacy = document.getElementById("privacyToggle").checked;
+      const result = document.getElementById("result");
+
+      result.textContent = "⏳ Generating report...";
+
+      let url =
+        session === "all"
+          ? "/api/report/all.csv"
+          : `/api/report/sessions/${session}.csv?privacy=${privacy}`;
+
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          result.textContent = `❌ Failed to generate report (status ${response.status})`;
+          return;
+        }
+
+        const blob = await response.blob();
+        const downloadUrl = window.URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = downloadUrl;
+        a.download =
+          session === "all"
+            ? "attendance-all.csv"
+            : `attendance-session-${session}.csv`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        window.URL.revokeObjectURL(downloadUrl);
+
+        result.textContent = "✅ Report downloaded successfully.";
+      } catch (error) {
+        console.error(error);
+        result.textContent = "⚠️ Error generating report. Check console.";
+      }
+    });
+  </script>
+</body>
+</html>

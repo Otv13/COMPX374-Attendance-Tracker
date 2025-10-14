@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Check In</title>
+  <link rel="stylesheet" href="staffdashboard.css" />
+  <style>
+    body {
+      background: #f7f7f7;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    main {
+      background: #fff;
+      width: 400px;
+      margin: 80px auto;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: #da291c;
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      text-align: left;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      margin-top: 5px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 15px;
+      font-size: 15px;
+      background: #ffa300;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #da291c;
+      color: white;
+    }
+
+    #status {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #333;
+    }
+
+    #backBtn {
+      background: #ccc;
+      margin-top: 20px;
+    }
+
+    #backBtn:hover {
+      background: #999;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <h1>Check In</h1>
+    <p>Enter your details to mark attendance.</p>
+
+    <form id="checkInForm">
+      <label for="username">Username:</label>
+      <input type="text" id="username" placeholder="e.g., jdoe" required />
+
+      <label for="sessionId">Session ID:</label>
+      <input type="number" id="sessionId" placeholder="e.g., 1" required />
+
+
+      <button type="submit">Submit Check-In</button>
+    </form>
+
+    <div id="status">No check-in yet.</div>
+
+    <button id="backBtn" onclick="document.location='staffdashboard.html'">
+      ← Back to Dashboard
+    </button>
+  </main>
+
+  <script>
+    const form = document.getElementById("checkInForm");
+    const status = document.getElementById("status");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const username = document.getElementById("username").value.trim();
+      const sessionId = document.getElementById("sessionId").value.trim();
+      const lat = parseFloat(document.getElementById("lat").value) || 0;
+      const lng = parseFloat(document.getElementById("lng").value) || 0;
+
+      if (!username || !sessionId) {
+        status.textContent = "⚠️ Please enter username and session ID.";
+        return;
+      }
+
+      status.textContent = "⏳ Submitting check-in...";
+
+      const payload = {
+        studentUsername: username,
+        sessionId: parseInt(sessionId),
+        lat,
+        lng,
+      };
+
+      try {
+        const res = await fetch("/api/attendance/checkin", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+
+        if (!res.ok) {
+          status.textContent = `❌ Failed to check in (status ${res.status})`;
+          return;
+        }
+
+        const result = await res.json();
+        status.textContent = `✅ Check-in successful for ${result.studentName || username}`;
+      } catch (err) {
+        console.error(err);
+        status.textContent = "❌ Error submitting check-in. Check console.";
+      }
+    });
+  </script>
+</body>
+</html>

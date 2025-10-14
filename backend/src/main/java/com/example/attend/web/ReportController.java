@@ -9,14 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
+import java.util.List;
 
-/**
- * Report API
- * Base path: /api/report
- * Endpoints:
- *   - JSON: GET /api/report/sessions/{id}?page=0&size=50&privacy=true
- *   - CSV : GET /api/report/sessions/{id}.csv?privacy=true
- */
 @RestController
 @RequestMapping("/api/report")
 public class ReportController {
@@ -27,10 +21,6 @@ public class ReportController {
         this.reportService = reportService;
     }
 
-    /**
-     * JSON paged
-     * GET /api/report/sessions/1?page=0&size=50&privacy=true
-     */
     @GetMapping("/sessions/{id}")
     public Page<AttendanceReportDTO> getReport(
             @PathVariable("id") Long sessionId,
@@ -41,10 +31,27 @@ public class ReportController {
         return reportService.pageForSession(sessionId, privacy, page, size);
     }
 
-    /**
-     * CSV download
-     * GET /api/report/sessions/1.csv?privacy=true
-     */
+    /** ✅ Simple demo: export all records as CSV */
+    @GetMapping(value = "/all.csv", produces = "text/csv")
+    public void exportAllCsv(HttpServletResponse response) throws Exception {
+        response.setHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=attendance-all.csv");
+        response.setContentType(MediaType.TEXT_PLAIN_VALUE);
+
+        List<AttendanceReportDTO> allReports = reportService.findAllReports();
+
+        try (PrintWriter w = response.getWriter()) {
+            w.println("studentId,studentName,submittedAt,flagLate,flagGeofence,flagLowAccuracy");
+
+            for (AttendanceReportDTO r : allReports) {
+                w.printf("%s,%s,%s,%s,%s,%s%n",
+                        csv(r.studentId()),
+                        csv(r.studentName()),
+                        csv(r.submittedAt() == null ? "" : r.submittedAt().toString()),
+                        b(r.flagLate()), b(r.flagGeofence()), b(r.flagLowAccuracy()));
+            }
+        }
+    }
+
     @GetMapping(value = "/sessions/{id}.csv", produces = "text/csv")
     public void exportCsv(
             @PathVariable("id") Long sessionId,

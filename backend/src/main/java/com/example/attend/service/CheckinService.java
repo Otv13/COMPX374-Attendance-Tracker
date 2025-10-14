@@ -33,6 +33,8 @@ public class CheckinService {
         a.setLat(lat);
         a.setLng(lng);
         a.setAccuracyMeters(accuracy);
+        a.setPresent(true);
+
 
         a.setIpTruncated(truncateIp(ip));
         a.setDeviceHash(hash(userAgent + "|" + a.getIpTruncated()));

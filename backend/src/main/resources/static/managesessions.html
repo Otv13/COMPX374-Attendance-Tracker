@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manage Sessions</title>
+  <link rel="stylesheet" href="staffdashboard.css" />
+  <style>
+    body {
+      background: #f7f7f7;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    main {
+      background: #fff;
+      width: 600px;
+      margin: 80px auto;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: #da291c;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+
+    th, td {
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+      text-align: center;
+    }
+
+    th {
+      background: #ffa300;
+      color: black;
+    }
+
+    tr:hover {
+      background: #f2f2f2;
+    }
+
+    button {
+      margin: 5px;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    #refreshBtn {
+      background: #ffa300;
+    }
+
+    #refreshBtn:hover {
+      background: #da291c;
+      color: #fff;
+    }
+
+    .deleteBtn {
+      background: #ff4c4c;
+      color: #fff;
+    }
+
+    .deleteBtn:hover {
+      background: #cc0000;
+    }
+
+    #status {
+      margin-top: 15px;
+      color: #555;
+      font-size: 14px;
+    }
+
+    #backBtn {
+      background: #ccc;
+      margin-top: 20px;
+    }
+
+    #backBtn:hover {
+      background: #999;
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <h1>Manage Sessions</h1>
+    <p>View all current sessions and manage them below.</p>
+
+    <button id="refreshBtn">🔄 Refresh List</button>
+
+    <table id="sessionTable">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Course</th>
+          <th>Start Time</th>
+          <th>End Time</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td colspan="5">No sessions loaded yet.</td></tr>
+      </tbody>
+    </table>
+
+    <div id="status"></div>
+
+    <button id="backBtn" onclick="document.location='staffdashboard.html'">← Back to Dashboard</button>
+  </main>
+
+  <script>
+    const tableBody = document.querySelector("#sessionTable tbody");
+    const status = document.getElementById("status");
+
+    async function loadSessions() {
+      status.textContent = "⏳ Loading sessions...";
+      tableBody.innerHTML = "<tr><td colspan='5'>Loading...</td></tr>";
+
+      try {
+        const res = await fetch("/api/session");
+        if (!res.ok) throw new Error("Failed to load sessions");
+
+        const sessions = await res.json();
+
+        if (sessions.length === 0) {
+          tableBody.innerHTML = "<tr><td colspan='5'>No sessions found.</td></tr>";
+          status.textContent = "ℹ️ No active sessions.";
+          return;
+        }
+
+        tableBody.innerHTML = sessions
+          .map(
+            (s) => `
+          <tr>
+            <td>${s.id}</td>
+            <td>${s.courseCode || "-"}</td>
+            <td>${s.startTime || "-"}</td>
+            <td>${s.endTime || "-"}</td>
+            <td>
+              <button class="deleteBtn" onclick="deleteSession(${s.id})">Delete</button>
+            </td>
+          </tr>`
+          )
+          .join("");
+
+        status.textContent = `✅ Loaded ${sessions.length} session(s).`;
+      } catch (err) {
+        console.error(err);
+        status.textContent = "❌ Error loading sessions.";
+      }
+    }
+
+    async function deleteSession(id) {
+      if (!confirm(`Delete session ${id}?`)) return;
+
+      try {
+        const res = await fetch(`/api/session/${id}`, { method: "DELETE" });
+        if (!res.ok) throw new Error("Failed to delete session");
+
+        status.textContent = `✅ Session ${id} deleted.`;
+        loadSessions(); // Refresh table
+      } catch (err) {
+        console.error(err);
+        status.textContent = `❌ Error deleting session ${id}.`;
+      }
+    }
+
+    document.getElementById("refreshBtn").addEventListener("click", loadSessions);
+
+    // Load on startup
+    loadSessions();
+  </script>
+</body>
+</html>

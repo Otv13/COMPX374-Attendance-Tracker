@@ -13,7 +13,13 @@ document.getElementById("createSession").onclick = () => {
   document.getElementById("manageSessions").onclick = () => {
     window.location.href = "staffmanage.html"; // page to manage sessions
   };
-  
+
+  // ✅ Generate Report button
+document.getElementById("generateReportButton").addEventListener("click", () => {
+  // Directly trigger file download from backend endpoint
+  window.location.href = "/api/report/all.csv";
+});
+
   // Refresh report
   document.getElementById("refresh").addEventListener("click", async () => {
     const sessionId = prompt("Enter session ID to view report:");
@@ -59,4 +65,6 @@ document.getElementById("createSession").onclick = () => {
     if (!sessionId) return;
     window.location.href = `/api/staff/sessions/${sessionId}/export.csv`;
   });
+  
+
   

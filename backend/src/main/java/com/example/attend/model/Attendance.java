@@ -42,6 +42,8 @@ public class Attendance {
 
     private String ipTruncated;   // anonymized IP /24 or /64
     private String deviceHash;    // fingerprint hash
+    
+    private boolean present; // true if checked in successfully
 
     // Flags for validation
     private boolean flagLate;

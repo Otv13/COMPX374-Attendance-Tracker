@@ -1,38 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Student Check-in</title>
-  <link rel="stylesheet" href="studentcheckin.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Check-In</title>
+  <link rel="stylesheet" href="student.css" />
 </head>
 <body>
   <header>
-    <h1>Student Check-in</h1>
-    <p id="status">Share your location when prompted.</p>
+    <h1>Student Check-In</h1>
+    <p>Enter your details and click "Check In" when on campus.</p>
   </header>
 
-  <div class="container">
-    <form>
-      <label for="u">Username</label>
-      <input id="u" type="text" placeholder="Enter your name" required />
+  <main>
+    <form id="checkinForm">
+      <label for="studentName">Full Name:</label>
+      <input type="text" id="studentName" placeholder="Jane Doe" required />
 
-      <label for="sid">Student ID</label>
-      <input id="sid" type="text" placeholder="Enter your student ID" required />
+      <label for="studentId">Student ID:</label>
+      <input type="text" id="studentId" placeholder="e.g. 123456" required />
 
-      <button id="btn" type="button">Check In</button>
+      <label for="studentUsername">Username:</label>
+      <input type="text" id="studentUsername" placeholder="e.g. jdoe1" required />
+
+      <button type="button" id="checkinButton">Check In</button>
     </form>
 
-    <pre id="out"></pre>
-  </div>
+    <section id="result">
+      <h3>Status:</h3>
+      <pre id="output">Not checked in yet.</pre>
+    </section>
+  </main>
 
   <footer>
-    <p>&copy; 2025 Attendance Tracker - Group N</p>
-    
-    <button onclick="document.location='index.html'"> Return to Home Page</button>
-
+    <p>&copy; 2025 Attendance Tracker – Group N</p>
   </footer>
 
-  <script src="scripts/studentscript.js"></script>
+  <script src="scripts/studentcheckin.js"></script>
 </body>
 </html>

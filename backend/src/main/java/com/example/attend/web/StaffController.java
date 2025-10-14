@@ -131,4 +131,23 @@ public class StaffController {
                 .header("Content-Disposition", "attachment; filename=attendance.csv")
                 .body(bytes);
     }
+    @GetMapping("/api/instructor/report")
+public ResponseEntity<?> generateSimpleReport() {
+    List<Map<String, Object>> report = new ArrayList<>();
+
+    for (Attendance a : attendanceRepo.findAll()) {
+        Map<String, Object> row = new LinkedHashMap<>();
+        row.put("Student Name", a.getStudentName());
+        row.put("Username", a.getStudentUsername());
+        row.put("Course", a.getSession().getCourseCode());
+        row.put("Session ID", a.getSession().getId());
+        row.put("Check-in Time", a.getSubmittedAt());
+        row.put("Geofence", a.isFlagGeofence());
+        row.put("Late", a.isFlagLate());
+        report.add(row);
+    }
+
+    return ResponseEntity.ok(report);
+}
+
 }

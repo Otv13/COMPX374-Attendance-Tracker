@@ -26,20 +26,19 @@
       <label>End Time:</label>
       <input type="datetime-local" id="endTime" required />
 
-            <!-- ===== Geofence Selection ===== -->
-            <label>Geofence Location:</label>
-            <select id="geofenceSelect">
-              <option value="">-- Select Building (optional) --</option>
-              <option value="G Block ">Block G  </option>
-              <option value="lBlock ">Block L </option>
-              <option value="sBlock ">Block S </option>
-              <option value="jblock">Block J </option>
-            </select>
-      
-            <!-- Radius (optional, still adjustable) -->
-            <label>Geofence Radius (m, optional):</label>
-            <input type="number" id="geofenceRadiusMeters" placeholder="150" />
-      
+      <!-- 🔹 Geofence Section (Dropdown Only) -->
+      <label>Choose Building Geofence:</label>
+      <select id="geofenceSelect">
+        <option value="">-- Select a Building --</option>
+        <option value="G Block">G Block – Engineering</option>
+        <option value="L Block">L Block – Labs</option>
+        <option value="S Block">S Block – Science</option>
+        <option value="J Block">J Block – Library</option>
+      </select>
+
+      <label>Geofence Radius (m, optional):</label>
+      <input type="number" id="geofenceRadiusMeters" placeholder="150" />
+
       <button type="submit">Create Session</button>
     </form>
 
@@ -51,9 +50,12 @@
 
   <footer>
     <p>&copy; 2025 Attendance Tracker – Group N</p>
-    <button onclick="document.location='staffdashboard.html'">Return to Dashboard</button>
+    <button onclick="document.location='staffdashboard.html'">
+      Return to Dashboard
+    </button>
   </footer>
 
+  <!-- ✅ Script at bottom so DOM is ready -->
   <script src="scripts/staffcreate.js"></script>
 </body>
 </html>

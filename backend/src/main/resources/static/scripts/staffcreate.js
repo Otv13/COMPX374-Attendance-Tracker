@@ -58,9 +58,9 @@ document.addEventListener("DOMContentLoaded", () => {
         <b>Student Link:</b> <a href="${link}" target="_blank">${link}</a>
       `;
     } catch (err) {
-      console.error("❌ Error creating session:", err);
+      console.error(" Error creating session:", err);
       document.getElementById("output").textContent =
-        "⚠️ Failed to create session. Check console for details.";
+        " Failed to create session. Check console for details.";
     }
   });
 });

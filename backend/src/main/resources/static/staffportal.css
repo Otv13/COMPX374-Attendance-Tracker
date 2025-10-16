@@ -1,4 +1,4 @@
-/* ===== Global Styles ===== */
+/*  Global Styles  */
 body {
   font-family: Arial, sans-serif;
   background: #f0f2f5;
@@ -12,7 +12,7 @@ body {
   text-align: center;
 }
 
-/* ===== Header ===== */
+/*  Header  */
 header {
   background: #DA291C;
   color: #FFFFFF;
@@ -27,7 +27,7 @@ h1, h2, h3, p {
   color: #000000;
 }
 
-/* ===== Main Section ===== */
+/*  Main Section  */
 section {
   background: #FFFFFF;
   padding: 30px;
@@ -39,7 +39,7 @@ section {
   text-align: center;
 }
 
-/* ===== Form Styles ===== */
+/*  Form Styles */
 form {
   display: flex;
   flex-direction: column;

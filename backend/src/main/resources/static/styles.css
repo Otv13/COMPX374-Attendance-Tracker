@@ -1,11 +1,11 @@
-/* ===== Reset ===== */
+/*  Reset  */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* ===== Global ===== */
+/*  Global  */
 body {
   font-family: system-ui, Arial, sans-serif;
   background: #f9fafb;
@@ -14,7 +14,7 @@ body {
   padding: 1.5rem;
 }
 
-/* ===== Header ===== */
+/*  Header  */
 header {
   margin-bottom: 2rem;
   text-align: center;
@@ -24,7 +24,7 @@ header h1 {
   color: #DA291C; 
 }
 
-/* ===== Sections ===== */
+/*  Sections  */
 section {
   background: #FFFFFF; 
   padding: 1.2rem;
@@ -41,7 +41,7 @@ section h2 {
   padding-bottom: 3px;
 }
 
-/* ===== Forms ===== */
+/*  Forms  */
 form, label {
   display: block;
   margin-bottom: 0.6rem;
@@ -63,7 +63,7 @@ textarea {
   resize: vertical;
 }
 
-/* ===== Buttons & Links ===== */
+/*  Buttons & Links  */
 button, a[download] {
   display: inline-block;
   margin-top: 0.6rem;
@@ -88,14 +88,14 @@ a[download]:hover {
   color: #FFFFFF; 
 }
 
-/* ===== Output / Results ===== */
+/*  Output / Results  */
 .output {
   margin-top: 0.6rem;
   font-style: italic;
   color: #555;
 }
 
-/* ===== Tables ===== */
+/*  Tables  */
 table {
   width: 100%;
   border-collapse: collapse;

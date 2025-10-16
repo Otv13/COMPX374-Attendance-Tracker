@@ -1,7 +1,7 @@
 // ===== Student Check-In with Live Geofence Verification =====
 async function checkIn() {
     try {
-      // 1️⃣ Extract session token from URL
+      //  Extract session token from URL
       const params = new URLSearchParams(window.location.search);
       const token = params.get("token");
       if (!token) {
@@ -9,7 +9,7 @@ async function checkIn() {
         return;
       }
   
-      // 2️⃣ Collect student identity from form
+      //  Collect student identity from form
       const name = document.getElementById("studentName").value.trim();
       const studentId = document.getElementById("studentId").value.trim();
       const username = document.getElementById("studentUsername").value.trim();
@@ -19,7 +19,7 @@ async function checkIn() {
         return;
       }
   
-      // 3️⃣ Get geolocation
+      //  Get geolocation
       if (!navigator.geolocation) {
         alert("Geolocation not supported by this browser.");
         return;
@@ -37,21 +37,21 @@ async function checkIn() {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
               token,
-              username,        // ✅ must match backend field
-              studentId,       // ✅ must match backend field
+              username,        //  must match backend field
+              studentId,       // must match backend field
               lat,
               lng,
-              accuracy         // ✅ must match backend field
+              accuracy         //  must match backend field
             })
           });
   
           const data = await res.json();
           if (res.ok) {
             document.getElementById("output").textContent =
-              `✅ Check-in recorded!\nMessage: ${data.message}`;
+              ` Check-in recorded!\nMessage: ${data.message}`;
           } else {
             document.getElementById("output").textContent =
-              `❌ Failed: ${data.message || "Server error"}`;
+              ` Failed: ${data.message || "Server error"}`;
           }
         },
         (err) => {

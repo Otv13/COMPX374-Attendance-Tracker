@@ -14,7 +14,7 @@ document.getElementById("createSession").onclick = () => {
     window.location.href = "staffmanage.html"; // page to manage sessions
   };
 
-  // ✅ Generate Report button
+  // Generates Report button
 document.getElementById("generateReportButton").addEventListener("click", () => {
   // Directly trigger file download from backend endpoint
   window.location.href = "/api/report/all.csv";

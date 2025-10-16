@@ -93,7 +93,7 @@
       try {
         const response = await fetch(url);
         if (!response.ok) {
-          result.textContent = `❌ Failed to generate report (status ${response.status})`;
+          result.textContent = ` Failed to generate report (status ${response.status})`;
           return;
         }
 
@@ -110,10 +110,10 @@
         a.remove();
         window.URL.revokeObjectURL(downloadUrl);
 
-        result.textContent = "✅ Report downloaded successfully.";
+        result.textContent = " Report downloaded successfully.";
       } catch (error) {
         console.error(error);
-        result.textContent = "⚠️ Error generating report. Check console.";
+        result.textContent = " Error generating report. Check console.";
       }
     });
   </script>
